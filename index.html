@@ -16,27 +16,29 @@
             <p class="app__subtitle">Trage deinen Namen ein, drücke auf das Item und lass den Zufall entscheiden!</p>
         </header>
 
-        <section class="roulette">
-            <div class="roulette__item-box" aria-live="polite" aria-atomic="true">
-                <span class="roulette__label">Nächster Charakter</span>
-                <div id="spinDisplay" class="roulette__display">?</div>
-            </div>
-            <div class="roulette__controls">
-                <label class="input__label" for="playerName">Spielername</label>
-                <input type="text" id="playerName" class="input" placeholder="z.B. Lightning Lisa">
-                <button id="assignButton" class="button">
-                    <span class="button__icon" aria-hidden="true">🎲</span>
-                    Zufall starten
-                </button>
-            </div>
-            <p id="feedback" class="feedback" role="status"></p>
-            <p id="remaining" class="remaining"></p>
-        </section>
+        <div class="app__layout">
+            <section class="roulette">
+                <div class="roulette__item-box" aria-live="polite" aria-atomic="true">
+                    <span class="roulette__label">Nächster Charakter</span>
+                    <div id="spinDisplay" class="roulette__display">?</div>
+                </div>
+                <div class="roulette__controls">
+                    <label class="input__label" for="playerName">Spielername</label>
+                    <input type="text" id="playerName" class="input" placeholder="z.B. Lightning Lisa">
+                    <button id="assignButton" class="button">
+                        <span class="button__icon" aria-hidden="true">🎲</span>
+                        Zufall starten
+                    </button>
+                </div>
+                <p id="feedback" class="feedback" role="status"></p>
+                <p id="remaining" class="remaining"></p>
+            </section>
 
-        <section class="assignments" aria-live="polite">
-            <h2 class="assignments__title">Bisherige Zuweisungen</h2>
-            <ul id="assignmentList" class="assignment-list"></ul>
-        </section>
+            <section class="assignments" aria-live="polite">
+                <h2 class="assignments__title">Bisherige Ziehungen</h2>
+                <ul id="assignmentList" class="assignment-list"></ul>
+            </section>
+        </div>
     </main>
 
     <template id="assignmentTemplate">

@@ -43,7 +43,7 @@ body::before {
 }
 
 .app {
-    width: min(920px, 100%);
+    width: min(1280px, 100%);
     background-color: rgba(9, 12, 40, 0.8);
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 24px;
@@ -56,6 +56,13 @@ body::before {
 
 .app__header {
     text-align: center;
+}
+
+.app__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: clamp(2rem, 4vw, 3.5rem);
+    align-items: start;
 }
 
 .app__title {
@@ -76,7 +83,7 @@ body::before {
 
 .roulette {
     display: grid;
-    gap: 1.5rem;
+    gap: clamp(1.2rem, 2vw, 1.75rem);
 }
 
 .roulette__item-box {
@@ -240,6 +247,9 @@ body::before {
     border: 1px solid rgba(255, 255, 255, 0.08);
     padding: clamp(1.5rem, 4vw, 2.5rem);
     box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
 .assignments__title {
@@ -253,20 +263,21 @@ body::before {
 .assignment-list {
     list-style: none;
     display: grid;
-    gap: 1rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem 1rem;
 }
 
 .assignment-card {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 1.25rem;
+    gap: 1rem;
     background: linear-gradient(120deg, rgba(32, 36, 82, 0.9), rgba(20, 23, 58, 0.85));
     border-radius: 16px;
-    padding: 1rem 1.2rem;
+    padding: 0.75rem 1rem;
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow:
-        0 12px 25px rgba(0, 0, 0, 0.25),
+        0 12px 25px rgba(0, 0, 0, 0.2),
         0 0 30px var(--glow, transparent);
     overflow: hidden;
     position: relative;
@@ -283,14 +294,13 @@ body::before {
 
 .assignment-card__character {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 0.45rem;
-    text-align: center;
+    gap: 0.75rem;
+    text-align: left;
 }
 
 .assignment-card__icon {
-    width: clamp(52px, 13vw, 76px);
+    width: clamp(44px, 6vw, 64px);
     aspect-ratio: 1 / 1;
     object-fit: contain;
     filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.35));
@@ -305,7 +315,7 @@ body::before {
 
 .assignment-card__player {
     font-weight: 600;
-    font-size: 1.05rem;
+    font-size: 1rem;
     margin-left: auto;
     text-align: right;
 }
@@ -337,15 +347,37 @@ body::before {
         padding: 1.8rem;
     }
 
+    .app__layout {
+        grid-template-columns: 1fr;
+    }
+
+    .assignment-list {
+        grid-template-columns: 1fr;
+    }
+
     .assignment-card {
         flex-direction: column;
         align-items: center;
         text-align: center;
     }
 
+    .assignment-card__character {
+        flex-direction: column;
+    }
+
     .assignment-card__player {
         width: 100%;
         margin-left: 0;
         text-align: center;
+    }
+}
+
+@media (max-width: 1024px) {
+    .app__layout {
+        grid-template-columns: 1fr;
+    }
+
+    .assignment-list {
+        grid-template-columns: 1fr;
     }
 }
