@@ -93,8 +93,7 @@ body::before {
     flex-direction: column;
     gap: clamp(1.2rem, 2vw, 1.75rem);
     flex: 0 0 auto;
-    height: 100%;
-    padding-bottom: 0.6rem;
+    padding-bottom: 1.1rem;
 }
 
 .roulette__item-box {
@@ -252,11 +251,11 @@ body::before {
     color: var(--text-muted);
     font-size: 0.95rem;
     margin-top: 0.45rem;
-    padding-bottom: 0.4rem;
+    padding-bottom: 0.9rem;
 }
 
 .assignments {
-    background: rgba(11, 13, 42, 0.7);
+    background: rgba(11, 13, 42, 0.8);
     border-radius: 18px;
     border: 1px solid rgba(255, 255, 255, 0.08);
     padding: clamp(1.5rem, 4vw, 2.5rem);
@@ -264,9 +263,9 @@ body::before {
     display: flex;
     flex-direction: column;
     gap: clamp(1.2rem, 2vw, 1.75rem);
-    flex: 1 1 auto;
     min-height: 0;
-    height: 100%;
+    align-self: flex-start;
+    margin-bottom: clamp(1.2rem, 3vh, 2.4rem);
 }
 
 .assignments__title {
@@ -288,31 +287,13 @@ body::before {
     margin: 0;
     padding: 0;
     flex: 1 1 auto;
-    min-height: 0;
+    min-height: calc(var(--visible-items) * var(--card-height) + (var(--visible-items) - 1) * var(--card-gap));
     max-height: calc(var(--visible-items) * var(--card-height) + (var(--visible-items) - 1) * var(--card-gap));
     overflow-y: auto;
     padding-right: 0.4rem;
     scrollbar-width: thin;
     scrollbar-color: rgba(255, 255, 255, 0.35) transparent;
     -webkit-overflow-scrolling: touch;
-    mask-image: linear-gradient(
-        to bottom,
-        transparent 0%,
-        rgba(0, 0, 0, 0.45) 6%,
-        rgba(0, 0, 0, 1) 20%,
-        rgba(0, 0, 0, 1) 80%,
-        rgba(0, 0, 0, 0.45) 94%,
-        transparent 100%
-    );
-    -webkit-mask-image: linear-gradient(
-        to bottom,
-        transparent 0%,
-        rgba(0, 0, 0, 0.45) 6%,
-        rgba(0, 0, 0, 1) 20%,
-        rgba(0, 0, 0, 1) 80%,
-        rgba(0, 0, 0, 0.45) 94%,
-        transparent 100%
-    );
 }
 
 @media (max-width: 960px) {
@@ -347,25 +328,15 @@ body::before {
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
     gap: 0.75rem;
-    background: linear-gradient(120deg, rgba(32, 36, 82, 0.9), rgba(20, 23, 58, 0.85));
+    background: linear-gradient(120deg, #252a63, #14173a);
     border-radius: 16px;
     padding: 0.7rem 0.9rem;
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow:
-        0 12px 25px rgba(0, 0, 0, 0.2),
-        0 0 30px var(--glow, transparent);
-    overflow: hidden;
+        0 12px 25px rgba(0, 0, 0, 0.18),
+        0 0 22px var(--glow, transparent);
     position: relative;
     min-height: var(--card-height, clamp(3.9rem, 7.5vw, 4.6rem));
-}
-
-.assignment-card::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 60%);
-    opacity: 0.2;
-    pointer-events: none;
 }
 
 .assignment-card__character {
