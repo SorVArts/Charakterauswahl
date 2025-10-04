@@ -23,13 +23,15 @@
 
 body {
     min-height: 100vh;
+    height: 100vh;
+    overflow: hidden;
     font-family: "Rubik", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     color: var(--text);
     background: var(--bg-gradient);
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2rem;
+    padding: clamp(1.5rem, 4vw, 2.5rem);
 }
 
 body::before {
@@ -43,15 +45,19 @@ body::before {
 }
 
 .app {
-    width: min(1440px, 100%);
+    width: min(1080px, 100%);
+    height: 100%;
+    max-height: calc(100vh - clamp(1.5rem, 4vw, 2.5rem) * 2);
     background-color: rgba(9, 12, 40, 0.8);
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 24px;
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
     backdrop-filter: blur(16px);
-    padding: clamp(1.5rem, 4vw, 3rem);
+    padding: clamp(1.5rem, 4vw, 2.5rem);
     display: grid;
-    gap: clamp(2rem, 4vw, 3.5rem);
+    grid-template-rows: auto 1fr;
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    overflow: hidden;
 }
 
 .app__header {
@@ -61,8 +67,9 @@ body::before {
 .app__layout {
     display: grid;
     grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-    gap: clamp(2rem, 4vw, 3.5rem);
-    align-items: start;
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    height: 100%;
+    align-items: stretch;
 }
 
 .app__title {
@@ -82,8 +89,11 @@ body::before {
 }
 
 .roulette {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     gap: clamp(1.2rem, 2vw, 1.75rem);
+    flex: 0 0 auto;
+    padding-bottom: 1.1rem;
 }
 
 .roulette__item-box {
@@ -230,6 +240,7 @@ body::before {
     min-height: 1.4rem;
     color: var(--danger);
     font-weight: 600;
+    margin-top: auto;
 }
 
 .feedback.is-success {
@@ -239,17 +250,22 @@ body::before {
 .remaining {
     color: var(--text-muted);
     font-size: 0.95rem;
+    margin-top: 0.45rem;
+    padding-bottom: 0.9rem;
 }
 
 .assignments {
-    background: rgba(11, 13, 42, 0.7);
+    background: rgba(11, 13, 42, 0.8);
     border-radius: 18px;
     border: 1px solid rgba(255, 255, 255, 0.08);
     padding: clamp(1.5rem, 4vw, 2.5rem);
     box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: clamp(1.2rem, 2vw, 1.75rem);
+    min-height: 0;
+    align-self: flex-start;
+    margin-bottom: clamp(1.2rem, 3vh, 2.4rem);
 }
 
 .assignments__title {
@@ -257,14 +273,54 @@ body::before {
     font-size: clamp(1rem, 2.5vw, 1.2rem);
     letter-spacing: 0.12rem;
     text-transform: uppercase;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0;
+    text-align: center;
 }
 
 .assignment-list {
+    --visible-items: 5;
+    --card-gap: 0.9rem;
+    --card-height: clamp(3.9rem, 7.5vw, 4.6rem);
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 0.75rem 1rem;
+    gap: var(--card-gap);
+    margin: 0;
+    padding: 0;
+    flex: 1 1 auto;
+    min-height: calc(var(--visible-items) * var(--card-height) + (var(--visible-items) - 1) * var(--card-gap));
+    max-height: calc(var(--visible-items) * var(--card-height) + (var(--visible-items) - 1) * var(--card-gap));
+    overflow-y: auto;
+    padding-right: 0.4rem;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.35) transparent;
+    -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 960px) {
+    .app {
+        width: min(760px, 100%);
+    }
+
+    .app__layout {
+        grid-template-columns: 1fr;
+    }
+
+    .assignments {
+        min-height: clamp(240px, 45vh, 360px);
+    }
+}
+
+.assignment-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.assignment-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.assignment-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.35);
+    border-radius: 999px;
 }
 
 .assignment-card {
@@ -272,24 +328,15 @@ body::before {
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
     gap: 0.75rem;
-    background: linear-gradient(120deg, rgba(32, 36, 82, 0.9), rgba(20, 23, 58, 0.85));
+    background: linear-gradient(120deg, #252a63, #14173a);
     border-radius: 16px;
     padding: 0.7rem 0.9rem;
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow:
-        0 12px 25px rgba(0, 0, 0, 0.2),
-        0 0 30px var(--glow, transparent);
-    overflow: hidden;
+        0 12px 25px rgba(0, 0, 0, 0.18),
+        0 0 22px var(--glow, transparent);
     position: relative;
-}
-
-.assignment-card::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 60%);
-    opacity: 0.2;
-    pointer-events: none;
+    min-height: var(--card-height, clamp(3.9rem, 7.5vw, 4.6rem));
 }
 
 .assignment-card__character {
