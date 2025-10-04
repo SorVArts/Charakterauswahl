@@ -96,6 +96,12 @@ const remaining = document.querySelector("#remaining");
 let availableCharacters = [...characters];
 const assignments = new Map();
 
+function updateAssignmentListLayout() {
+  const itemCount = assignmentList.childElementCount;
+  const visibleItems = Math.max(1, Math.min(itemCount, 5));
+  assignmentList.style.setProperty("--visible-items", visibleItems);
+}
+
 function updateRemainingText() {
   if (availableCharacters.length === 0) {
     remaining.textContent = "Alle Charaktere wurden vergeben!";
@@ -184,6 +190,7 @@ function addAssignment(playerName, character) {
   assignments.set(playerName.toLowerCase(), character.name);
   const card = createAssignmentCard(playerName, character);
   assignmentList.append(card);
+  updateAssignmentListLayout();
   requestAnimationFrame(() => {
     assignmentList.scrollTo({ top: assignmentList.scrollHeight, behavior: "smooth" });
   });
@@ -231,3 +238,4 @@ playerNameInput.addEventListener("keydown", (event) => {
 });
 
 updateRemainingText();
+updateAssignmentListLayout();
