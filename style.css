@@ -96,6 +96,12 @@ body::before {
     padding-bottom: 1.1rem;
 }
 
+.roulette__note {
+    text-align: center;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
 .roulette__item-box {
     position: relative;
     background: linear-gradient(145deg, rgba(41, 46, 94, 0.9), rgba(19, 22, 54, 0.85));
