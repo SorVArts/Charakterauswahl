@@ -1,31 +1,88 @@
+function iconPath(fileName) {
+  return `Charakter-Icons/${fileName}`;
+}
+
 const characters = [
-  { name: "Mario", tag: "Der Allrounder" },
-  { name: "Luigi", tag: "Grüner Blitz" },
-  { name: "Peach", tag: "Königliche Power" },
-  { name: "Daisy", tag: "Blumiger Sprint" },
-  { name: "Rosalina", tag: "Sternenglanz" },
-  { name: "Yoshi", tag: "Turbo Dino" },
-  { name: "Toad", tag: "Pilz-Rakete" },
-  { name: "Toadette", tag: "Pilz-Prinzessin" },
-  { name: "Bowser", tag: "Panzersprint" },
-  { name: "Bowser Jr.", tag: "Chaos Kid" },
-  { name: "Donkey Kong", tag: "Bananen-Boost" },
-  { name: "Diddy Kong", tag: "Fass-Boost" },
-  { name: "Wario", tag: "Goldgräber" },
-  { name: "Waluigi", tag: "Schabernack" },
-  { name: "Koopa", tag: "Panzer-Drifter" },
-  { name: "Shy Guy", tag: "Masken-Mystery" },
-  { name: "Baby Mario", tag: "Mini-Macht" },
-  { name: "Baby Peach", tag: "Kindskopf-Kick" },
-  { name: "Baby Luigi", tag: "Nano Nitro" },
-  { name: "Baby Daisy", tag: "Windel-Drift" },
-  { name: "Metal Mario", tag: "Stahl-Speed" },
-  { name: "King Boo", tag: "Spuk-Sprint" },
-  { name: "Petey Piranha", tag: "Pflanzen-Power" },
-  { name: "Link", tag: "Hylianer Hit" },
-  { name: "Isabelle", tag: "Tierische Turbo" },
-  { name: "Inkling Girl", tag: "Farbenrausch" },
-  { name: "Inkling Boy", tag: "Spritz-Slalom" }
+  { name: "Mario", icon: iconPath("MK8DX_Mario_Icon.png") },
+  { name: "Luigi", icon: iconPath("MK8DX_Luigi_Icon.png") },
+  { name: "Peach", icon: iconPath("MK8DX_Peach_Icon.png") },
+  { name: "Daisy", icon: iconPath("MK8DX_Daisy_Icon.png") },
+  { name: "Rosalina", icon: iconPath("MK8DX_Rosalina_Icon.png") },
+  { name: "Yoshi", icon: iconPath("MK8DX_Yoshi_Icon.png") },
+  { name: "Yoshi (Schwarz)", icon: iconPath("MK8_Black_Yoshi_Icon.png") },
+  { name: "Yoshi (Blau)", icon: iconPath("MK8_Blue_Yoshi_Icon.png") },
+  { name: "Yoshi (Hellblau)", icon: iconPath("MK8_Light-Blue_Yoshi_Icon.png") },
+  { name: "Yoshi (Orange)", icon: iconPath("MK8_Orange_Yoshi_Icon.png") },
+  { name: "Yoshi (Rosa)", icon: iconPath("MK8_Pink_Yoshi_Icon.png") },
+  { name: "Yoshi (Rot)", icon: iconPath("MK8_Red_Yoshi_Icon.png") },
+  { name: "Yoshi (Weiß)", icon: iconPath("MK8_White_Yoshi_Icon.png") },
+  { name: "Yoshi (Gelb)", icon: iconPath("MK8_Yellow_Yoshi_Icon.png") },
+  { name: "Toad", icon: iconPath("MK8DX_Toad_Icon.png") },
+  { name: "Toadette", icon: iconPath("MK8DX_Toadette_Icon.png") },
+  { name: "Bowser", icon: iconPath("MK8DX_Bowser_Icon.png") },
+  { name: "Bowser Jr.", icon: iconPath("MK8_Bowser_Jr_Icon.png") },
+  { name: "Donkey Kong", icon: iconPath("MK8DX_DK_Icon.png") },
+  { name: "Diddy Kong", icon: iconPath("MK8DX_Diddy_Kong_Icon.png") },
+  { name: "Funky Kong", icon: iconPath("MK8DX_Funky_Kong_Icon.png") },
+  { name: "Wario", icon: iconPath("MK8DX_Wario_Icon.png") },
+  { name: "Waluigi", icon: iconPath("MK8DX_Waluigi_Icon.png") },
+  { name: "Koopa Troopa", icon: iconPath("MK8DX_Koopa_Troopa_Icon.png") },
+  { name: "Lakitu", icon: iconPath("MK8DX_Lakitu_Icon.png") },
+  { name: "Shy Guy", icon: iconPath("MK8DX_Shy_Guy_Icon.png") },
+  { name: "Shy Guy (Schwarz)", icon: iconPath("MK8_Black_Shy_Guy_Icon.png") },
+  { name: "Shy Guy (Blau)", icon: iconPath("MK8_Blue_Shy_Guy_Icon.png") },
+  { name: "Shy Guy (Grün)", icon: iconPath("MK8_Green_Shy_Guy_Icon.png") },
+  { name: "Shy Guy (Hellblau)", icon: iconPath("MK8_Light-Blue_Shy_Guy_Icon.png") },
+  { name: "Shy Guy (Orange)", icon: iconPath("MK8_Orange_Shy_Guy_Icon.png") },
+  { name: "Shy Guy (Rosa)", icon: iconPath("MK8_Pink_Shy_Guy_Icon.png") },
+  { name: "Shy Guy (Weiß)", icon: iconPath("MK8_White_Shy_Guy_Icon.png") },
+  { name: "Shy Guy (Gelb)", icon: iconPath("MK8_Yellow_Shy_Guy_Icon.png") },
+  { name: "Baby Mario", icon: iconPath("MK8DX_Baby_Mario_Icon.png") },
+  { name: "Baby Luigi", icon: iconPath("MK8DX_Baby_Luigi_Icon.png") },
+  { name: "Baby Peach", icon: iconPath("MK8DX_Baby_Peach_Icon.png") },
+  { name: "Baby Daisy", icon: iconPath("MK8DX_Baby_Daisy_Icon.png") },
+  { name: "Baby Rosalina", icon: iconPath("MK8DX_Baby_Rosalina_Icon.png") },
+  { name: "Metal Mario", icon: iconPath("MK8DX_Metal_Mario_Icon.png") },
+  { name: "Gold Mario", icon: iconPath("MK8DX_Gold_Mario_Icon.png") },
+  { name: "Pink Gold Peach", icon: iconPath("MK8DX_Pink_Gold_Peach_Icon.png") },
+  { name: "Cat Peach", icon: iconPath("MK8DX_Cat_Peach_Icon.png") },
+  { name: "Tanooki Mario", icon: iconPath("MK8DX_Tanooki_Mario_Icon.png") },
+  { name: "Dry Bones", icon: iconPath("MK8DX_Dry_Bones_Icon.png") },
+  { name: "Dry Bowser", icon: iconPath("MK8DX_Dry_Bowser_Icon.png") },
+  { name: "King Boo", icon: iconPath("MK8DX_King_Boo_Icon.png") },
+  { name: "Kamek", icon: iconPath("MK8DX_Kamek_Icon.png") },
+  { name: "Pauline", icon: iconPath("MK8DX_Pauline_Icon.png") },
+  { name: "Peachette", icon: iconPath("MK8DX_Peachette_Icon.png") },
+  { name: "Petey Piranha", icon: iconPath("MK8DX_Petey_Piranha_Icon.png") },
+  { name: "Wiggler", icon: iconPath("MK8DX_Wiggler_Icon.png") },
+  { name: "Birdo", icon: iconPath("MK8D_Birdo_Icon.png") },
+  { name: "Birdo (Schwarz)", icon: iconPath("MK8D_Birdo_Black_Icon.png") },
+  { name: "Birdo (Blau)", icon: iconPath("MK8D_Birdo_Blue_Icon.png") },
+  { name: "Birdo (Grün)", icon: iconPath("MK8D_Birdo_Green_Icon.png") },
+  { name: "Birdo (Hellblau)", icon: iconPath("MK8D_Birdo_Light-Blue_Icon.png") },
+  { name: "Birdo (Orange)", icon: iconPath("MK8D_Birdo_Orange_Icon.png") },
+  { name: "Birdo (Rot)", icon: iconPath("MK8D_Birdo_Red_Icon.png") },
+  { name: "Birdo (Weiß)", icon: iconPath("MK8D_Birdo_White_Icon.png") },
+  { name: "Birdo (Gelb)", icon: iconPath("MK8D_Birdo_Yellow_Icon.png") },
+  { name: "Isabelle", icon: iconPath("MK8DX_Isabelle_Icon.png") },
+  { name: "Bewohnerin", icon: iconPath("MK8DX_Female_Villager_Icon.png") },
+  { name: "Bewohner", icon: iconPath("MK8DX_Male_Villager_Icon.png") },
+  { name: "Inkling (Mädchen)", icon: iconPath("MK8DX_Female_Inkling_Icon.png") },
+  { name: "Inkling (Junge)", icon: iconPath("MK8DX_Male_Inkling_Icon.png") },
+  { name: "Inkling (Pink)", icon: iconPath("MK8D_Pink_Inkling_Icon.png") },
+  { name: "Inkling (Lila)", icon: iconPath("MK8D_Purple_Inkling_Icon.png") },
+  { name: "Inkling (Grün)", icon: iconPath("MK8D_Green_Inkling_Icon.png") },
+  { name: "Inkling (Türkis)", icon: iconPath("MK8D_Cyan_Inkling_Icon.png") },
+  { name: "Link", icon: iconPath("MK8DX_Link_Icon.png") },
+  { name: "Link (BotW)", icon: iconPath("MK8D_BotW_Link_Icon.png") },
+  { name: "Iggy", icon: iconPath("MK8DX_Iggy_Icon.png") },
+  { name: "Larry", icon: iconPath("MK8DX_Larry_Icon.png") },
+  { name: "Lemmy", icon: iconPath("MK8DX_Lemmy_Icon.png") },
+  { name: "Ludwig", icon: iconPath("MK8DX_Ludwig_Icon.png") },
+  { name: "Morton", icon: iconPath("MK8DX_Morton_Icon.png") },
+  { name: "Roy", icon: iconPath("MK8DX_Roy_Icon.png") },
+  { name: "Wendy", icon: iconPath("MK8DX_Wendy_Icon.png") },
+  { name: "Mii", icon: iconPath("Mii_MK8.png") }
 ];
 
 const spinDisplay = document.querySelector("#spinDisplay");
@@ -55,8 +112,10 @@ function showFeedback(message, isSuccess = false) {
 function createAssignmentCard(playerName, character) {
   const element = assignmentTemplate.content.firstElementChild.cloneNode(true);
   element.querySelector(".assignment-card__player").textContent = playerName;
-  element.querySelector(".assignment-card__character").textContent = character.name;
-  element.querySelector(".assignment-card__tagline").textContent = `„${character.tag}“`;
+  element.querySelector(".assignment-card__name").textContent = character.name;
+  const icon = element.querySelector(".assignment-card__icon");
+  icon.src = character.icon;
+  icon.alt = character.name;
   element.style.setProperty("--glow", randomGlow());
   return element;
 }
@@ -114,13 +173,11 @@ function spinThroughCharacters(finalCharacter) {
 }
 
 function updateSpinDisplay(character, isFinal = false) {
-  if (isFinal) {
-    spinDisplay.innerHTML = `<span class="display__name">${character.name}</span><span class="display__tag">${character.tag}</span>`;
-    spinDisplay.classList.add("is-final");
-  } else {
-    spinDisplay.textContent = character.name;
-    spinDisplay.classList.remove("is-final");
-  }
+  spinDisplay.innerHTML = `
+    <img src="${character.icon}" alt="${character.name}" class="display__icon" />
+    <span class="display__name">${character.name}</span>
+  `;
+  spinDisplay.classList.toggle("is-final", isFinal);
 }
 
 function addAssignment(playerName, character) {
