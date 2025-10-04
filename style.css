@@ -273,8 +273,8 @@ body::before {
     flex-direction: column;
     gap: clamp(1.2rem, 2vw, 1.75rem);
     min-height: 0;
-    align-self: flex-start;
-    margin-bottom: clamp(1.2rem, 3vh, 2.4rem);
+    align-self: stretch;
+    height: 100%;
 }
 
 .assignments__title {
