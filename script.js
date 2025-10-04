@@ -92,9 +92,13 @@ const assignmentList = document.querySelector("#assignmentList");
 const assignmentTemplate = document.querySelector("#assignmentTemplate");
 const feedback = document.querySelector("#feedback");
 const remaining = document.querySelector("#remaining");
+const soundToggle = document.querySelector("#soundToggle");
+const soundToggleIcon = document.querySelector(".sound-toggle__icon");
+const spinAudio = document.querySelector("#spinAudio");
 
 let availableCharacters = [...characters];
 const assignments = new Map();
+let isMuted = false;
 
 function updateAssignmentListLayout() {
   const itemCount = assignmentList.childElementCount;
@@ -147,8 +151,7 @@ function easeOutQuad(t) {
 
 function spinThroughCharacters(finalCharacter) {
   const totalSpins = 26;
-  const baseDelay = 60;
-  const maxAdditionalDelay = 150;
+  const totalDuration = 3000;
 
   spinDisplay.classList.add("is-spinning");
   assignButton.disabled = true;
@@ -157,7 +160,7 @@ function spinThroughCharacters(finalCharacter) {
   for (let i = 0; i < totalSpins; i++) {
     const progress = i / (totalSpins - 1);
     const eased = easeOutQuad(progress);
-    const delay = baseDelay * i + maxAdditionalDelay * eased * i * 0.35;
+    const delay = eased * totalDuration;
 
     setTimeout(() => {
       const current = i === totalSpins - 1 ? finalCharacter : pickRandomCharacter();
@@ -165,15 +168,13 @@ function spinThroughCharacters(finalCharacter) {
     }, delay);
   }
 
-  const totalDuration = baseDelay * totalSpins + maxAdditionalDelay * easeOutQuad(1) * totalSpins * 0.35;
-
   setTimeout(() => {
     spinDisplay.classList.remove("is-spinning");
     spinDisplay.classList.add("is-final");
     setTimeout(() => spinDisplay.classList.remove("is-final"), 1200);
     assignButton.disabled = false;
     playerNameInput.disabled = false;
-  }, totalDuration + 80);
+  }, totalDuration);
 
   return totalDuration;
 }
@@ -217,6 +218,14 @@ function handleAssignment() {
   const chosenCharacter = pickRandomCharacter();
   const animationDuration = spinThroughCharacters(chosenCharacter);
 
+  if (spinAudio) {
+    spinAudio.currentTime = 0;
+    const playPromise = spinAudio.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {});
+    }
+  }
+
   showFeedback("Item-Block wird geöffnet...", true);
 
   setTimeout(() => {
@@ -236,6 +245,29 @@ playerNameInput.addEventListener("keydown", (event) => {
     handleAssignment();
   }
 });
+
+function updateSoundToggle() {
+  if (!soundToggle || !soundToggleIcon || !spinAudio) {
+    return;
+  }
+
+  soundToggle.classList.toggle("is-muted", isMuted);
+  soundToggle.setAttribute("aria-pressed", String(isMuted));
+  const label = isMuted ? "Sound aktivieren" : "Sound deaktivieren";
+  soundToggle.setAttribute("aria-label", label);
+  soundToggle.setAttribute("title", label);
+  soundToggleIcon.textContent = isMuted ? "🔇" : "🔊";
+  spinAudio.muted = isMuted;
+}
+
+if (soundToggle) {
+  soundToggle.addEventListener("click", () => {
+    isMuted = !isMuted;
+    updateSoundToggle();
+  });
+}
+
+updateSoundToggle();
 
 updateRemainingText();
 updateAssignmentListLayout();
