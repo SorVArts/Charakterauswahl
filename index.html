@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mario Kart Charakterauswahl</title>
+    <title>Mario Kart Charakter Roulette</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rubik:wght@400;600&display=swap" rel="stylesheet">
@@ -12,37 +12,28 @@
 <body>
     <main class="app">
         <header class="app__header">
-            <h1 class="app__title">Mario Kart Charakterauswahl</h1>
-            <p class="app__subtitle">Trage deinen Namen ein, starte den Zufall und erhalte deinen Charakter inklusive Icon!</p>
+            <h1 class="app__title">Mario Kart Charakter Roulette</h1>
+            <p class="app__subtitle">Trage deinen Namen ein, drücke auf das Item und lass den Zufall entscheiden!</p>
         </header>
 
-        <section class="controls" aria-live="polite">
-            <div class="controls__form">
+        <section class="roulette">
+            <div class="roulette__item-box" aria-live="polite" aria-atomic="true">
+                <span class="roulette__label">Nächster Charakter</span>
+                <div id="spinDisplay" class="roulette__display">?</div>
+            </div>
+            <div class="roulette__controls">
                 <label class="input__label" for="playerName">Spielername</label>
-                <div class="controls__inputs">
-                    <input type="text" id="playerName" class="input" placeholder="z.&nbsp;B. Rainbow Raser">
-                    <button id="assignButton" class="button">
-                        <span class="button__icon" aria-hidden="true">🎲</span>
-                        Zufall starten
-                    </button>
-                </div>
-                <p id="feedback" class="feedback" role="status"></p>
+                <input type="text" id="playerName" class="input" placeholder="z.B. Lightning Lisa">
+                <button id="assignButton" class="button">
+                    <span class="button__icon" aria-hidden="true">🎲</span>
+                    Zufall starten
+                </button>
             </div>
-            <div class="preview" aria-live="polite" aria-atomic="true">
-                <span class="preview__label">Zugewiesener Charakter</span>
-                <div id="spinDisplay" class="preview__display">
-                    <span class="preview__placeholder">?</span>
-                </div>
-                <p id="remaining" class="remaining"></p>
-            </div>
+            <p id="feedback" class="feedback" role="status"></p>
+            <p id="remaining" class="remaining"></p>
         </section>
 
-        <section class="character-overview">
-            <h2 class="character-overview__title">Verfügbare Charaktere</h2>
-            <ul id="characterGrid" class="character-grid"></ul>
-        </section>
-
-        <section class="assignments">
+        <section class="assignments" aria-live="polite">
             <h2 class="assignments__title">Bisherige Zuweisungen</h2>
             <ul id="assignmentList" class="assignment-list"></ul>
         </section>
@@ -50,11 +41,11 @@
 
     <template id="assignmentTemplate">
         <li class="assignment-card">
-            <span class="assignment-card__player"></span>
-            <div class="assignment-card__character">
-                <span class="assignment-card__name"></span>
-                <img class="assignment-card__icon" alt="">
+            <div class="assignment-card__info">
+                <span class="assignment-card__player"></span>
+                <span class="assignment-card__tagline"></span>
             </div>
+            <span class="assignment-card__character"></span>
         </li>
     </template>
 
