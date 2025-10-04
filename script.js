@@ -1,31 +1,84 @@
 const characters = [
-  { name: "Mario", tag: "Der Allrounder" },
-  { name: "Luigi", tag: "Grüner Blitz" },
-  { name: "Peach", tag: "Königliche Power" },
-  { name: "Daisy", tag: "Blumiger Sprint" },
-  { name: "Rosalina", tag: "Sternenglanz" },
-  { name: "Yoshi", tag: "Turbo Dino" },
-  { name: "Toad", tag: "Pilz-Rakete" },
-  { name: "Toadette", tag: "Pilz-Prinzessin" },
-  { name: "Bowser", tag: "Panzersprint" },
-  { name: "Bowser Jr.", tag: "Chaos Kid" },
-  { name: "Donkey Kong", tag: "Bananen-Boost" },
-  { name: "Diddy Kong", tag: "Fass-Boost" },
-  { name: "Wario", tag: "Goldgräber" },
-  { name: "Waluigi", tag: "Schabernack" },
-  { name: "Koopa", tag: "Panzer-Drifter" },
-  { name: "Shy Guy", tag: "Masken-Mystery" },
-  { name: "Baby Mario", tag: "Mini-Macht" },
-  { name: "Baby Peach", tag: "Kindskopf-Kick" },
-  { name: "Baby Luigi", tag: "Nano Nitro" },
-  { name: "Baby Daisy", tag: "Windel-Drift" },
-  { name: "Metal Mario", tag: "Stahl-Speed" },
-  { name: "King Boo", tag: "Spuk-Sprint" },
-  { name: "Petey Piranha", tag: "Pflanzen-Power" },
-  { name: "Link", tag: "Hylianer Hit" },
-  { name: "Isabelle", tag: "Tierische Turbo" },
-  { name: "Inkling Girl", tag: "Farbenrausch" },
-  { name: "Inkling Boy", tag: "Spritz-Slalom" }
+  { name: "Mii", icon: "Charakter-Icons/Mii_MK8.png" },
+  { name: "Shy Guy (Black)", icon: "Charakter-Icons/MK8_Black_Shy_Guy_Icon.png" },
+  { name: "Yoshi (Black)", icon: "Charakter-Icons/MK8_Black_Yoshi_Icon.png" },
+  { name: "Shy Guy (Blue)", icon: "Charakter-Icons/MK8_Blue_Shy_Guy_Icon.png" },
+  { name: "Yoshi (Blue)", icon: "Charakter-Icons/MK8_Blue_Yoshi_Icon.png" },
+  { name: "Bowser Jr.", icon: "Charakter-Icons/MK8_Bowser_Jr_Icon.png" },
+  { name: "Shy Guy (Green)", icon: "Charakter-Icons/MK8_Green_Shy_Guy_Icon.png" },
+  { name: "Shy Guy (Light-Blue)", icon: "Charakter-Icons/MK8_Light-Blue_Shy_Guy_Icon.png" },
+  { name: "Yoshi (Light-Blue)", icon: "Charakter-Icons/MK8_Light-Blue_Yoshi_Icon.png" },
+  { name: "Shy Guy (Orange)", icon: "Charakter-Icons/MK8_Orange_Shy_Guy_Icon.png" },
+  { name: "Yoshi (Orange)", icon: "Charakter-Icons/MK8_Orange_Yoshi_Icon.png" },
+  { name: "Shy Guy (Pink)", icon: "Charakter-Icons/MK8_Pink_Shy_Guy_Icon.png" },
+  { name: "Yoshi (Pink)", icon: "Charakter-Icons/MK8_Pink_Yoshi_Icon.png" },
+  { name: "Yoshi (Red)", icon: "Charakter-Icons/MK8_Red_Yoshi_Icon.png" },
+  { name: "Shy Guy (White)", icon: "Charakter-Icons/MK8_White_Shy_Guy_Icon.png" },
+  { name: "Yoshi (White)", icon: "Charakter-Icons/MK8_White_Yoshi_Icon.png" },
+  { name: "Shy Guy (Yellow)", icon: "Charakter-Icons/MK8_Yellow_Shy_Guy_Icon.png" },
+  { name: "Yoshi (Yellow)", icon: "Charakter-Icons/MK8_Yellow_Yoshi_Icon.png" },
+  { name: "Birdo (Black)", icon: "Charakter-Icons/MK8D_Birdo_Black_Icon.png" },
+  { name: "Birdo (Blue)", icon: "Charakter-Icons/MK8D_Birdo_Blue_Icon.png" },
+  { name: "Birdo (Green)", icon: "Charakter-Icons/MK8D_Birdo_Green_Icon.png" },
+  { name: "Birdo", icon: "Charakter-Icons/MK8D_Birdo_Icon.png" },
+  { name: "Birdo (Light-Blue)", icon: "Charakter-Icons/MK8D_Birdo_Light-Blue_Icon.png" },
+  { name: "Birdo (Orange)", icon: "Charakter-Icons/MK8D_Birdo_Orange_Icon.png" },
+  { name: "Birdo (Red)", icon: "Charakter-Icons/MK8D_Birdo_Red_Icon.png" },
+  { name: "Birdo (White)", icon: "Charakter-Icons/MK8D_Birdo_White_Icon.png" },
+  { name: "Birdo (Yellow)", icon: "Charakter-Icons/MK8D_Birdo_Yellow_Icon.png" },
+  { name: "Link (BotW)", icon: "Charakter-Icons/MK8D_BotW_Link_Icon.png" },
+  { name: "Inkling (Cyan)", icon: "Charakter-Icons/MK8D_Cyan_Inkling_Icon.png" },
+  { name: "Inkling (Green)", icon: "Charakter-Icons/MK8D_Green_Inkling_Icon.png" },
+  { name: "Inkling (Pink)", icon: "Charakter-Icons/MK8D_Pink_Inkling_Icon.png" },
+  { name: "Inkling (Purple)", icon: "Charakter-Icons/MK8D_Purple_Inkling_Icon.png" },
+  { name: "Baby Daisy", icon: "Charakter-Icons/MK8DX_Baby_Daisy_Icon.png" },
+  { name: "Baby Luigi", icon: "Charakter-Icons/MK8DX_Baby_Luigi_Icon.png" },
+  { name: "Baby Mario", icon: "Charakter-Icons/MK8DX_Baby_Mario_Icon.png" },
+  { name: "Baby Peach", icon: "Charakter-Icons/MK8DX_Baby_Peach_Icon.png" },
+  { name: "Baby Rosalina", icon: "Charakter-Icons/MK8DX_Baby_Rosalina_Icon.png" },
+  { name: "Bowser", icon: "Charakter-Icons/MK8DX_Bowser_Icon.png" },
+  { name: "Cat Peach", icon: "Charakter-Icons/MK8DX_Cat_Peach_Icon.png" },
+  { name: "Daisy", icon: "Charakter-Icons/MK8DX_Daisy_Icon.png" },
+  { name: "Diddy Kong", icon: "Charakter-Icons/MK8DX_Diddy_Kong_Icon.png" },
+  { name: "Donkey Kong", icon: "Charakter-Icons/MK8DX_DK_Icon.png" },
+  { name: "Dry Bones", icon: "Charakter-Icons/MK8DX_Dry_Bones_Icon.png" },
+  { name: "Dry Bowser", icon: "Charakter-Icons/MK8DX_Dry_Bowser_Icon.png" },
+  { name: "Inkling Girl", icon: "Charakter-Icons/MK8DX_Female_Inkling_Icon.png" },
+  { name: "Villager (Female)", icon: "Charakter-Icons/MK8DX_Female_Villager_Icon.png" },
+  { name: "Funky Kong", icon: "Charakter-Icons/MK8DX_Funky_Kong_Icon.png" },
+  { name: "Gold Mario", icon: "Charakter-Icons/MK8DX_Gold_Mario_Icon.png" },
+  { name: "Iggy", icon: "Charakter-Icons/MK8DX_Iggy_Icon.png" },
+  { name: "Isabelle", icon: "Charakter-Icons/MK8DX_Isabelle_Icon.png" },
+  { name: "Kamek", icon: "Charakter-Icons/MK8DX_Kamek_Icon.png" },
+  { name: "King Boo", icon: "Charakter-Icons/MK8DX_King_Boo_Icon.png" },
+  { name: "Koopa Troopa", icon: "Charakter-Icons/MK8DX_Koopa_Troopa_Icon.png" },
+  { name: "Lakitu", icon: "Charakter-Icons/MK8DX_Lakitu_Icon.png" },
+  { name: "Larry", icon: "Charakter-Icons/MK8DX_Larry_Icon.png" },
+  { name: "Lemmy", icon: "Charakter-Icons/MK8DX_Lemmy_Icon.png" },
+  { name: "Link", icon: "Charakter-Icons/MK8DX_Link_Icon.png" },
+  { name: "Ludwig", icon: "Charakter-Icons/MK8DX_Ludwig_Icon.png" },
+  { name: "Luigi", icon: "Charakter-Icons/MK8DX_Luigi_Icon.png" },
+  { name: "Inkling Boy", icon: "Charakter-Icons/MK8DX_Male_Inkling_Icon.png" },
+  { name: "Villager (Male)", icon: "Charakter-Icons/MK8DX_Male_Villager_Icon.png" },
+  { name: "Mario", icon: "Charakter-Icons/MK8DX_Mario_Icon.png" },
+  { name: "Metal Mario", icon: "Charakter-Icons/MK8DX_Metal_Mario_Icon.png" },
+  { name: "Morton", icon: "Charakter-Icons/MK8DX_Morton_Icon.png" },
+  { name: "Pauline", icon: "Charakter-Icons/MK8DX_Pauline_Icon.png" },
+  { name: "Peach", icon: "Charakter-Icons/MK8DX_Peach_Icon.png" },
+  { name: "Peachette", icon: "Charakter-Icons/MK8DX_Peachette_Icon.png" },
+  { name: "Petey Piranha", icon: "Charakter-Icons/MK8DX_Petey_Piranha_Icon.png" },
+  { name: "Pink Gold Peach", icon: "Charakter-Icons/MK8DX_Pink_Gold_Peach_Icon.png" },
+  { name: "Rosalina", icon: "Charakter-Icons/MK8DX_Rosalina_Icon.png" },
+  { name: "Roy", icon: "Charakter-Icons/MK8DX_Roy_Icon.png" },
+  { name: "Shy Guy", icon: "Charakter-Icons/MK8DX_Shy_Guy_Icon.png" },
+  { name: "Tanooki Mario", icon: "Charakter-Icons/MK8DX_Tanooki_Mario_Icon.png" },
+  { name: "Toad", icon: "Charakter-Icons/MK8DX_Toad_Icon.png" },
+  { name: "Toadette", icon: "Charakter-Icons/MK8DX_Toadette_Icon.png" },
+  { name: "Waluigi", icon: "Charakter-Icons/MK8DX_Waluigi_Icon.png" },
+  { name: "Wario", icon: "Charakter-Icons/MK8DX_Wario_Icon.png" },
+  { name: "Wendy", icon: "Charakter-Icons/MK8DX_Wendy_Icon.png" },
+  { name: "Wiggler", icon: "Charakter-Icons/MK8DX_Wiggler_Icon.png" },
+  { name: "Yoshi", icon: "Charakter-Icons/MK8DX_Yoshi_Icon.png" },
 ];
 
 const spinDisplay = document.querySelector("#spinDisplay");
@@ -35,198 +88,18 @@ const assignmentList = document.querySelector("#assignmentList");
 const assignmentTemplate = document.querySelector("#assignmentTemplate");
 const feedback = document.querySelector("#feedback");
 const remaining = document.querySelector("#remaining");
-const rouletteCanvas = document.querySelector("#rouletteCanvas");
-const wheelContext = rouletteCanvas?.getContext("2d");
-
-const WHEEL_BASE_SIZE = 360;
-const wheelColors = [
-  "#ff6b6b",
-  "#ffd93d",
-  "#6ef2b4",
-  "#4dabf7",
-  "#b197fc",
-  "#ffa94d",
-  "#74c0fc",
-  "#f783ac",
-];
-
-let rotation = 0;
-let isSpinning = false;
-let activeFrame = null;
+const characterGrid = document.querySelector("#characterGrid");
 
 let availableCharacters = [...characters];
 const assignments = new Map();
 
-function setupWheelCanvas() {
-  if (!rouletteCanvas || !wheelContext) return;
-
-  const devicePixelRatio = window.devicePixelRatio || 1;
-  rouletteCanvas.width = WHEEL_BASE_SIZE * devicePixelRatio;
-  rouletteCanvas.height = WHEEL_BASE_SIZE * devicePixelRatio;
-  rouletteCanvas.style.width = "100%";
-  rouletteCanvas.style.height = "100%";
-  wheelContext.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
-  drawWheel();
+function normalizeKey(value) {
+  return value.toLowerCase().trim();
 }
 
-function drawWheel(highlightedCharacter = null) {
-  if (!rouletteCanvas || !wheelContext) return;
-
-  const size = WHEEL_BASE_SIZE;
-  const radius = size / 2 - 18;
-  const center = size / 2;
-  const innerRadius = 46;
-  const totalSegments = characters.length;
-  const anglePerSegment = (Math.PI * 2) / totalSegments;
-
-  wheelContext.clearRect(0, 0, size, size);
-
-  wheelContext.save();
-  wheelContext.translate(center, center);
-  wheelContext.rotate(rotation - Math.PI / 2);
-
-  for (let i = 0; i < totalSegments; i++) {
-    const character = characters[i];
-    const startAngle = i * anglePerSegment;
-    const endAngle = startAngle + anglePerSegment;
-    const isAvailable = availableCharacters.includes(character);
-    const isHighlighted = highlightedCharacter && character === highlightedCharacter;
-    const baseColor = wheelColors[i % wheelColors.length];
-    const fillColor = isAvailable ? baseColor : "rgba(80, 84, 128, 0.5)";
-
-    wheelContext.beginPath();
-    wheelContext.moveTo(0, 0);
-    wheelContext.arc(0, 0, radius, startAngle, endAngle);
-    wheelContext.closePath();
-    wheelContext.fillStyle = fillColor;
-    wheelContext.fill();
-
-    if (isHighlighted) {
-      wheelContext.save();
-      wheelContext.clip();
-      const glow = wheelContext.createRadialGradient(0, 0, radius * 0.2, 0, 0, radius);
-      glow.addColorStop(0, "rgba(255, 255, 255, 0.35)");
-      glow.addColorStop(1, "rgba(255, 255, 255, 0)");
-      wheelContext.fillStyle = glow;
-      wheelContext.fillRect(-radius, -radius, radius * 2, radius * 2);
-      wheelContext.restore();
-    }
-
-    wheelContext.strokeStyle = "rgba(6, 9, 30, 0.7)";
-    wheelContext.lineWidth = 2;
-    wheelContext.stroke();
-
-    wheelContext.save();
-    wheelContext.rotate(startAngle + anglePerSegment / 2);
-    wheelContext.translate(radius - 28, 0);
-    wheelContext.rotate(Math.PI / 2);
-    wheelContext.fillStyle = isAvailable ? "#f7f8ff" : "rgba(247, 248, 255, 0.35)";
-    wheelContext.font = "600 13px 'Rubik', sans-serif";
-    wheelContext.textAlign = "center";
-    wheelContext.textBaseline = "middle";
-    wheelContext.fillText(character.name, 0, 0);
-    wheelContext.restore();
-  }
-
-  wheelContext.restore();
-
-  wheelContext.save();
-  wheelContext.translate(center, center);
-  wheelContext.beginPath();
-  wheelContext.arc(0, 0, innerRadius, 0, Math.PI * 2);
-  wheelContext.fillStyle = "rgba(12, 15, 45, 0.92)";
-  wheelContext.fill();
-  wheelContext.lineWidth = 4;
-  wheelContext.strokeStyle = "rgba(255, 255, 255, 0.18)";
-  wheelContext.stroke();
-
-  const centerGradient = wheelContext.createRadialGradient(0, 0, 4, 0, 0, innerRadius);
-  centerGradient.addColorStop(0, "rgba(255, 255, 255, 0.55)");
-  centerGradient.addColorStop(1, "rgba(255, 255, 255, 0)");
-  wheelContext.fillStyle = centerGradient;
-  wheelContext.fill();
-  wheelContext.restore();
-}
-
-function normalizeAngle(angle) {
-  const tau = Math.PI * 2;
-  return ((angle % tau) + tau) % tau;
-}
-
-function targetRotationForCharacter(character) {
-  const totalSegments = characters.length;
-  const index = characters.indexOf(character);
-  const anglePerSegment = (Math.PI * 2) / totalSegments;
-  const segmentCenter = index * anglePerSegment + anglePerSegment / 2;
-  const desired = Math.PI / 2 - segmentCenter;
-  const current = normalizeAngle(rotation);
-  let delta = desired - current;
-  if (delta <= 0) {
-    delta += Math.PI * 2;
-  }
-  const extraSpins = 3 + Math.floor(Math.random() * 2);
-  return rotation + extraSpins * Math.PI * 2 + delta;
-}
-
-function animateRotation(targetRotation, duration = 4200) {
-  return new Promise((resolve) => {
-    const startRotation = rotation;
-    const totalChange = targetRotation - startRotation;
-    const startTime = performance.now();
-
-    function frame(now) {
-      const elapsed = now - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = easeOutQuad(progress);
-      rotation = startRotation + totalChange * eased;
-      drawWheel();
-      if (progress < 1) {
-        activeFrame = requestAnimationFrame(frame);
-      } else {
-        activeFrame = null;
-        rotation = normalizeAngle(rotation);
-        drawWheel();
-        resolve();
-      }
-    }
-
-    if (activeFrame) {
-      cancelAnimationFrame(activeFrame);
-    }
-
-    activeFrame = requestAnimationFrame(frame);
-  });
-}
-
-async function spinWheel(finalCharacter) {
-  if (!rouletteCanvas || !wheelContext) {
-    return new Promise((resolve) => {
-      setTimeout(resolve, 1000);
-    });
-  }
-
-  isSpinning = true;
-  spinDisplay.classList.add("is-spinning");
-  const shuffleInterval = setInterval(() => {
-    const preview = pickRandomCharacter();
-    if (preview) {
-      spinDisplay.textContent = preview.name;
-    }
-  }, 90);
-
-  const target = targetRotationForCharacter(finalCharacter);
-  try {
-    await animateRotation(target);
-  } finally {
-    clearInterval(shuffleInterval);
-  }
-
-  drawWheel(finalCharacter);
-  spinDisplay.classList.remove("is-spinning");
-  spinDisplay.classList.add("is-final");
-  spinDisplay.innerHTML = `<span class="display__name">${finalCharacter.name}</span><span class="display__tag">${finalCharacter.tag}</span>`;
-  setTimeout(() => spinDisplay.classList.remove("is-final"), 1200);
-  isSpinning = false;
+function showFeedback(message, isSuccess = false) {
+  feedback.textContent = message;
+  feedback.classList.toggle("is-success", isSuccess);
 }
 
 function updateRemainingText() {
@@ -235,24 +108,49 @@ function updateRemainingText() {
     assignButton.disabled = true;
     playerNameInput.disabled = true;
   } else {
-    remaining.textContent = `${availableCharacters.length} Charaktere sind noch im Item-Block.`;
-    if (!isSpinning) {
-      assignButton.disabled = false;
-      playerNameInput.disabled = false;
-    }
+    remaining.textContent = `${availableCharacters.length} Charaktere sind noch verfügbar.`;
+    assignButton.disabled = false;
+    playerNameInput.disabled = false;
   }
 }
 
-function showFeedback(message, isSuccess = false) {
-  feedback.textContent = message;
-  feedback.classList.toggle("is-success", isSuccess);
+function createCharacterTile(character) {
+  const element = document.createElement("li");
+  element.className = "character-grid__item";
+  element.dataset.character = normalizeKey(character.name);
+  element.innerHTML = `
+    <div class="character-tile">
+      <span class="character-tile__name">${character.name}</span>
+      <img src="${character.icon}" alt="${character.name}" class="character-tile__icon" loading="lazy">
+    </div>
+  `;
+  return element;
+}
+
+function renderCharacterGrid() {
+  const fragment = document.createDocumentFragment();
+  characters.forEach((character) => {
+    fragment.append(createCharacterTile(character));
+  });
+  characterGrid.append(fragment);
+}
+
+function markCharacterAsAssigned(character) {
+  const tile = characterGrid.querySelector(
+    `[data-character="${normalizeKey(character.name)}"]`
+  );
+  if (tile) {
+    tile.classList.add("is-assigned");
+  }
 }
 
 function createAssignmentCard(playerName, character) {
   const element = assignmentTemplate.content.firstElementChild.cloneNode(true);
   element.querySelector(".assignment-card__player").textContent = playerName;
-  element.querySelector(".assignment-card__character").textContent = character.name;
-  element.querySelector(".assignment-card__tagline").textContent = `„${character.tag}“`;
+  element.querySelector(".assignment-card__name").textContent = character.name;
+  const icon = element.querySelector(".assignment-card__icon");
+  icon.src = character.icon;
+  icon.alt = character.name;
   element.style.setProperty("--glow", randomGlow());
   return element;
 }
@@ -270,24 +168,32 @@ function pickRandomCharacter() {
 
 function removeCharacter(target) {
   availableCharacters = availableCharacters.filter((character) => character !== target);
-  drawWheel();
 }
 
-function easeOutQuad(t) {
-  return t * (2 - t);
+function updatePreview(character) {
+  if (!character) {
+    spinDisplay.innerHTML = '<span class="preview__placeholder">?</span>';
+    return;
+  }
+
+  spinDisplay.innerHTML = `
+    <span class="preview__name">${character.name}</span>
+    <img src="${character.icon}" alt="${character.name}" class="preview__icon">
+  `;
 }
 
 function addAssignment(playerName, character) {
-  assignments.set(playerName.toLowerCase(), character.name);
+  assignments.set(normalizeKey(playerName), character.name);
   const card = createAssignmentCard(playerName, character);
   assignmentList.append(card);
 }
 
-async function handleAssignment() {
-  if (isSpinning) {
-    return;
-  }
+function resetForm() {
+  playerNameInput.value = "";
+  playerNameInput.focus();
+}
 
+function handleAssignment() {
   const rawName = playerNameInput.value.trim();
 
   if (!rawName) {
@@ -295,7 +201,8 @@ async function handleAssignment() {
     return;
   }
 
-  if (assignments.has(rawName.toLowerCase())) {
+  const key = normalizeKey(rawName);
+  if (assignments.has(key)) {
     showFeedback("Dieser Spielername hat bereits einen Charakter erhalten.");
     return;
   }
@@ -306,28 +213,13 @@ async function handleAssignment() {
   }
 
   const chosenCharacter = pickRandomCharacter();
-  assignButton.disabled = true;
-  playerNameInput.disabled = true;
-  spinDisplay.textContent = "...";
-  spinDisplay.classList.remove("is-final");
-
-  showFeedback("Item-Block wird geöffnet...", true);
-
-  await spinWheel(chosenCharacter);
-
+  showFeedback(`${rawName} erhält ${chosenCharacter.name}!`, true);
+  updatePreview(chosenCharacter);
   removeCharacter(chosenCharacter);
+  markCharacterAsAssigned(chosenCharacter);
   addAssignment(rawName, chosenCharacter);
   updateRemainingText();
-  showFeedback(`${rawName} erhält ${chosenCharacter.name}!`, true);
-  playerNameInput.value = "";
-  if (availableCharacters.length > 0) {
-    playerNameInput.focus();
-  }
-
-  if (availableCharacters.length === 0) {
-    spinDisplay.textContent = "✔";
-    spinDisplay.classList.remove("is-final");
-  }
+  resetForm();
 }
 
 assignButton.addEventListener("click", handleAssignment);
@@ -338,6 +230,6 @@ playerNameInput.addEventListener("keydown", (event) => {
   }
 });
 
-setupWheelCanvas();
-window.addEventListener("resize", setupWheelCanvas);
+renderCharacterGrid();
+updatePreview();
 updateRemainingText();

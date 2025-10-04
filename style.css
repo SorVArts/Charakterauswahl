@@ -7,7 +7,7 @@
     --accent: #7b5bff;
     --accent-dark: #5133ff;
     --text: #f7f8ff;
-    --text-muted: rgba(247, 248, 255, 0.7);
+    --text-muted: rgba(247, 248, 255, 0.72);
     --card-bg: rgba(16, 19, 60, 0.75);
     --card-border: rgba(255, 255, 255, 0.08);
     --success: #6ef2b4;
@@ -29,7 +29,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2rem;
+    padding: clamp(1.5rem, 3vw, 3rem);
 }
 
 body::before {
@@ -43,8 +43,8 @@ body::before {
 }
 
 .app {
-    width: min(920px, 100%);
-    background-color: rgba(9, 12, 40, 0.8);
+    width: min(1040px, 100%);
+    background-color: rgba(9, 12, 40, 0.82);
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 24px;
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
@@ -74,173 +74,24 @@ body::before {
     line-height: 1.6;
 }
 
-.roulette {
+.controls {
     display: grid;
-    gap: 1.5rem;
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 }
 
-.roulette__table {
-    position: relative;
-    display: grid;
-    justify-items: center;
-    gap: 1.2rem;
-    padding: clamp(1.5rem, 4vw, 2.5rem);
-    background: radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.18), transparent 60%),
-        linear-gradient(160deg, rgba(21, 25, 70, 0.95), rgba(10, 12, 42, 0.92));
-    border-radius: 24px;
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.45), 0 24px 40px rgba(0, 0, 0, 0.35);
-}
-
-.roulette__table::after {
-    content: "";
-    position: absolute;
-    inset: 14px;
-    border-radius: 18px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    pointer-events: none;
-}
-
-.roulette__table-label {
-    font-family: "Press Start 2P", sans-serif;
-    font-size: clamp(0.65rem, 1.6vw, 0.8rem);
-    letter-spacing: 0.24rem;
-    text-transform: uppercase;
-    color: var(--text-muted);
-}
-
-.roulette__wheel-wrapper {
-    position: relative;
-    display: grid;
-    place-items: center;
-    width: min(360px, 70vw);
-    aspect-ratio: 1/1;
-}
-
-.roulette__wheel-wrapper::before {
-    content: "";
-    position: absolute;
-    inset: 6%;
-    border-radius: 50%;
-    border: 10px solid rgba(255, 255, 255, 0.08);
-    box-shadow:
-        inset 0 0 25px rgba(0, 0, 0, 0.65),
-        0 0 35px rgba(0, 0, 0, 0.35);
-    pointer-events: none;
-    z-index: 1;
-}
-
-.roulette__wheel {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: radial-gradient(circle at center, rgba(0, 0, 0, 0.5), transparent 65%);
-    box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.6), 0 0 35px rgba(0, 0, 0, 0.35);
-    position: relative;
-    z-index: 0;
-}
-
-.roulette__pointer {
-    position: absolute;
-    top: -12px;
-    width: 34px;
-    height: 48px;
-    clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
-    background: linear-gradient(145deg, var(--primary), var(--primary-dark));
-    border: 2px solid rgba(255, 255, 255, 0.5);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.45);
-    z-index: 3;
-}
-
-.roulette__pointer::after {
-    content: "";
-    position: absolute;
-    inset: 40% 28%;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.65);
-}
-
-.roulette__item-box {
-    position: relative;
-    background: linear-gradient(145deg, rgba(41, 46, 94, 0.9), rgba(19, 22, 54, 0.85));
+.controls__form,
+.preview {
+    background: linear-gradient(160deg, rgba(21, 25, 70, 0.95), rgba(10, 12, 42, 0.9));
     border-radius: 20px;
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.35), 0 18px 30px rgba(0, 0, 0, 0.35);
-    padding: clamp(1.5rem, 4vw, 2.25rem);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.45), 0 24px 40px rgba(0, 0, 0, 0.3);
+    padding: clamp(1.5rem, 3.5vw, 2.5rem);
     display: grid;
     gap: 1rem;
-    overflow: hidden;
 }
 
-.roulette__item-box::before,
-.roulette__item-box::after {
-    content: "";
-    position: absolute;
-    inset: -80% -30%;
-    background: conic-gradient(from 0deg, rgba(255, 255, 255, 0) 0 120deg, rgba(255, 255, 255, 0.45) 180deg, rgba(255, 255, 255, 0) 240deg);
-    animation: rotate 9s linear infinite;
-    pointer-events: none;
-}
-
-.roulette__item-box::after {
-    animation-duration: 12s;
-    animation-direction: reverse;
-    opacity: 0.7;
-}
-
-.roulette__label {
-    font-family: "Press Start 2P", sans-serif;
-    font-size: clamp(0.6rem, 1.4vw, 0.75rem);
-    color: var(--primary);
-    letter-spacing: 0.2rem;
-}
-
-.roulette__display {
-    font-family: "Press Start 2P", sans-serif;
-    font-size: clamp(1.4rem, 4vw, 2.2rem);
-    text-transform: uppercase;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 0.6rem;
-    padding: 1.5rem;
-    border-radius: 14px;
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.28), rgba(255, 255, 255, 0.08));
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    box-shadow: inset 0 4px 16px rgba(255, 255, 255, 0.08), inset 0 -8px 24px rgba(0, 0, 0, 0.5);
-    min-height: clamp(120px, 20vw, 160px);
-    text-align: center;
-    transition: transform 180ms ease, color 200ms ease;
-}
-
-.roulette__display.is-spinning {
-    animation: bounce 0.7s ease-in-out infinite;
-    color: var(--primary);
-}
-
-.display__name {
-    letter-spacing: 0.12rem;
-}
-
-.display__tag {
-    font-family: "Rubik", sans-serif;
-    font-size: clamp(0.85rem, 2vw, 1rem);
-    letter-spacing: normal;
-    color: var(--text-muted);
-    text-transform: none;
-}
-
-.roulette__display.is-final {
-    transform: scale(1.05);
-    color: var(--success);
-}
-
-.roulette__display.is-final .display__tag {
-    color: var(--text-muted);
-}
-
-.roulette__controls {
+.controls__inputs {
     display: grid;
     gap: 0.75rem;
 }
@@ -315,9 +166,131 @@ body::before {
     color: var(--success);
 }
 
+.preview {
+    text-align: center;
+    position: relative;
+}
+
+.preview__label {
+    font-family: "Press Start 2P", sans-serif;
+    font-size: clamp(0.7rem, 1.5vw, 0.85rem);
+    letter-spacing: 0.2rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+.preview__display {
+    margin: 0 auto;
+    width: min(240px, 60vw);
+    display: grid;
+    gap: 0.75rem;
+    justify-items: center;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.25), rgba(255, 255, 255, 0.08));
+    border-radius: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.14);
+    padding: 1.2rem 1.4rem;
+    box-shadow: inset 0 4px 16px rgba(255, 255, 255, 0.08), inset 0 -8px 24px rgba(0, 0, 0, 0.5);
+    min-height: 220px;
+}
+
+.preview__placeholder {
+    font-family: "Press Start 2P", sans-serif;
+    font-size: 2.2rem;
+    color: var(--text-muted);
+}
+
+.preview__name {
+    font-family: "Press Start 2P", sans-serif;
+    font-size: clamp(0.85rem, 2vw, 1.1rem);
+    letter-spacing: 0.12rem;
+    text-transform: uppercase;
+}
+
+.preview__icon {
+    width: min(160px, 40vw);
+    aspect-ratio: 1/1;
+    object-fit: contain;
+    filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.45));
+}
+
 .remaining {
     color: var(--text-muted);
     font-size: 0.95rem;
+}
+
+.character-overview {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.character-overview__title {
+    font-family: "Press Start 2P", sans-serif;
+    font-size: clamp(1rem, 2.4vw, 1.3rem);
+    letter-spacing: 0.14rem;
+    text-transform: uppercase;
+}
+
+.character-grid {
+    list-style: none;
+    display: grid;
+    gap: clamp(1rem, 2.5vw, 1.5rem);
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.character-grid__item {
+    position: relative;
+    background: rgba(20, 24, 68, 0.7);
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1.1rem;
+    display: grid;
+    justify-items: center;
+    gap: 0.75rem;
+    transition: transform 150ms ease, border-color 150ms ease, filter 150ms ease;
+}
+
+.character-tile {
+    display: grid;
+    gap: 0.75rem;
+    justify-items: center;
+    width: 100%;
+}
+
+.character-grid__item:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.2);
+    filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.35));
+}
+
+.character-tile__name {
+    font-weight: 600;
+    text-align: center;
+}
+
+.character-tile__icon {
+    width: min(120px, 45vw);
+    aspect-ratio: 1/1;
+    object-fit: contain;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 0.6rem;
+}
+
+.character-grid__item.is-assigned {
+    opacity: 0.35;
+    filter: grayscale(0.9);
+    transform: none;
+}
+
+.character-grid__item.is-assigned::after {
+    content: "Vergeben";
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    font-size: 0.75rem;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
 }
 
 .assignments {
@@ -343,18 +316,19 @@ body::before {
 }
 
 .assignment-card {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     background: linear-gradient(120deg, rgba(32, 36, 82, 0.9), rgba(20, 23, 58, 0.85));
     border-radius: 16px;
-    padding: 1rem 1.2rem;
+    padding: 1.2rem 1.4rem;
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow:
         0 12px 25px rgba(0, 0, 0, 0.25),
         0 0 30px var(--glow, transparent);
-    overflow: hidden;
+    display: grid;
+    gap: 0.8rem;
+    justify-items: center;
+    text-align: center;
     position: relative;
+    overflow: hidden;
 }
 
 .assignment-card::after {
@@ -366,59 +340,40 @@ body::before {
     pointer-events: none;
 }
 
-.assignment-card__info {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-}
-
 .assignment-card__player {
     font-weight: 600;
     font-size: 1.05rem;
 }
 
-.assignment-card__tagline {
-    font-size: 0.85rem;
-    color: var(--text-muted);
+.assignment-card__character {
+    display: grid;
+    gap: 0.55rem;
+    justify-items: center;
 }
 
-.assignment-card__character {
+.assignment-card__name {
     font-family: "Press Start 2P", sans-serif;
     font-size: clamp(0.75rem, 2vw, 0.95rem);
     text-transform: uppercase;
     letter-spacing: 0.08rem;
 }
 
-@keyframes rotate {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+.assignment-card__icon {
+    width: min(120px, 45vw);
+    aspect-ratio: 1/1;
+    object-fit: contain;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.25);
+    padding: 0.6rem;
+    filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.45));
 }
 
-@keyframes bounce {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.05);
-    }
-}
-
-@media (max-width: 720px) {
-    body {
-        padding: 1.5rem;
+@media (max-width: 640px) {
+    .controls {
+        grid-template-columns: 1fr;
     }
 
-    .app {
-        padding: 1.8rem;
-    }
-
-    .assignment-card {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
+    .character-grid {
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
     }
 }
