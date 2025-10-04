@@ -89,9 +89,12 @@ body::before {
 }
 
 .roulette {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     gap: clamp(1.2rem, 2vw, 1.75rem);
     flex: 0 0 auto;
+    height: 100%;
+    padding-bottom: 0.6rem;
 }
 
 .roulette__item-box {
@@ -238,6 +241,7 @@ body::before {
     min-height: 1.4rem;
     color: var(--danger);
     font-weight: 600;
+    margin-top: auto;
 }
 
 .feedback.is-success {
@@ -247,6 +251,8 @@ body::before {
 .remaining {
     color: var(--text-muted);
     font-size: 0.95rem;
+    margin-top: 0.45rem;
+    padding-bottom: 0.4rem;
 }
 
 .assignments {
@@ -260,6 +266,7 @@ body::before {
     gap: clamp(1.2rem, 2vw, 1.75rem);
     flex: 1 1 auto;
     min-height: 0;
+    height: 100%;
 }
 
 .assignments__title {
