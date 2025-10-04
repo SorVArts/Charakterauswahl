@@ -184,6 +184,9 @@ function addAssignment(playerName, character) {
   assignments.set(playerName.toLowerCase(), character.name);
   const card = createAssignmentCard(playerName, character);
   assignmentList.append(card);
+  requestAnimationFrame(() => {
+    assignmentList.scrollTo({ top: assignmentList.scrollHeight, behavior: "smooth" });
+  });
 }
 
 function handleAssignment() {
