@@ -1,84 +1,31 @@
 const characters = [
-  { name: "Mii", icon: "Charakter-Icons/Mii_MK8.png" },
-  { name: "Shy Guy (Black)", icon: "Charakter-Icons/MK8_Black_Shy_Guy_Icon.png" },
-  { name: "Yoshi (Black)", icon: "Charakter-Icons/MK8_Black_Yoshi_Icon.png" },
-  { name: "Shy Guy (Blue)", icon: "Charakter-Icons/MK8_Blue_Shy_Guy_Icon.png" },
-  { name: "Yoshi (Blue)", icon: "Charakter-Icons/MK8_Blue_Yoshi_Icon.png" },
-  { name: "Bowser Jr.", icon: "Charakter-Icons/MK8_Bowser_Jr_Icon.png" },
-  { name: "Shy Guy (Green)", icon: "Charakter-Icons/MK8_Green_Shy_Guy_Icon.png" },
-  { name: "Shy Guy (Light-Blue)", icon: "Charakter-Icons/MK8_Light-Blue_Shy_Guy_Icon.png" },
-  { name: "Yoshi (Light-Blue)", icon: "Charakter-Icons/MK8_Light-Blue_Yoshi_Icon.png" },
-  { name: "Shy Guy (Orange)", icon: "Charakter-Icons/MK8_Orange_Shy_Guy_Icon.png" },
-  { name: "Yoshi (Orange)", icon: "Charakter-Icons/MK8_Orange_Yoshi_Icon.png" },
-  { name: "Shy Guy (Pink)", icon: "Charakter-Icons/MK8_Pink_Shy_Guy_Icon.png" },
-  { name: "Yoshi (Pink)", icon: "Charakter-Icons/MK8_Pink_Yoshi_Icon.png" },
-  { name: "Yoshi (Red)", icon: "Charakter-Icons/MK8_Red_Yoshi_Icon.png" },
-  { name: "Shy Guy (White)", icon: "Charakter-Icons/MK8_White_Shy_Guy_Icon.png" },
-  { name: "Yoshi (White)", icon: "Charakter-Icons/MK8_White_Yoshi_Icon.png" },
-  { name: "Shy Guy (Yellow)", icon: "Charakter-Icons/MK8_Yellow_Shy_Guy_Icon.png" },
-  { name: "Yoshi (Yellow)", icon: "Charakter-Icons/MK8_Yellow_Yoshi_Icon.png" },
-  { name: "Birdo (Black)", icon: "Charakter-Icons/MK8D_Birdo_Black_Icon.png" },
-  { name: "Birdo (Blue)", icon: "Charakter-Icons/MK8D_Birdo_Blue_Icon.png" },
-  { name: "Birdo (Green)", icon: "Charakter-Icons/MK8D_Birdo_Green_Icon.png" },
-  { name: "Birdo", icon: "Charakter-Icons/MK8D_Birdo_Icon.png" },
-  { name: "Birdo (Light-Blue)", icon: "Charakter-Icons/MK8D_Birdo_Light-Blue_Icon.png" },
-  { name: "Birdo (Orange)", icon: "Charakter-Icons/MK8D_Birdo_Orange_Icon.png" },
-  { name: "Birdo (Red)", icon: "Charakter-Icons/MK8D_Birdo_Red_Icon.png" },
-  { name: "Birdo (White)", icon: "Charakter-Icons/MK8D_Birdo_White_Icon.png" },
-  { name: "Birdo (Yellow)", icon: "Charakter-Icons/MK8D_Birdo_Yellow_Icon.png" },
-  { name: "Link (BotW)", icon: "Charakter-Icons/MK8D_BotW_Link_Icon.png" },
-  { name: "Inkling (Cyan)", icon: "Charakter-Icons/MK8D_Cyan_Inkling_Icon.png" },
-  { name: "Inkling (Green)", icon: "Charakter-Icons/MK8D_Green_Inkling_Icon.png" },
-  { name: "Inkling (Pink)", icon: "Charakter-Icons/MK8D_Pink_Inkling_Icon.png" },
-  { name: "Inkling (Purple)", icon: "Charakter-Icons/MK8D_Purple_Inkling_Icon.png" },
-  { name: "Baby Daisy", icon: "Charakter-Icons/MK8DX_Baby_Daisy_Icon.png" },
-  { name: "Baby Luigi", icon: "Charakter-Icons/MK8DX_Baby_Luigi_Icon.png" },
-  { name: "Baby Mario", icon: "Charakter-Icons/MK8DX_Baby_Mario_Icon.png" },
-  { name: "Baby Peach", icon: "Charakter-Icons/MK8DX_Baby_Peach_Icon.png" },
-  { name: "Baby Rosalina", icon: "Charakter-Icons/MK8DX_Baby_Rosalina_Icon.png" },
-  { name: "Bowser", icon: "Charakter-Icons/MK8DX_Bowser_Icon.png" },
-  { name: "Cat Peach", icon: "Charakter-Icons/MK8DX_Cat_Peach_Icon.png" },
-  { name: "Daisy", icon: "Charakter-Icons/MK8DX_Daisy_Icon.png" },
-  { name: "Diddy Kong", icon: "Charakter-Icons/MK8DX_Diddy_Kong_Icon.png" },
-  { name: "Donkey Kong", icon: "Charakter-Icons/MK8DX_DK_Icon.png" },
-  { name: "Dry Bones", icon: "Charakter-Icons/MK8DX_Dry_Bones_Icon.png" },
-  { name: "Dry Bowser", icon: "Charakter-Icons/MK8DX_Dry_Bowser_Icon.png" },
-  { name: "Inkling Girl", icon: "Charakter-Icons/MK8DX_Female_Inkling_Icon.png" },
-  { name: "Villager (Female)", icon: "Charakter-Icons/MK8DX_Female_Villager_Icon.png" },
-  { name: "Funky Kong", icon: "Charakter-Icons/MK8DX_Funky_Kong_Icon.png" },
-  { name: "Gold Mario", icon: "Charakter-Icons/MK8DX_Gold_Mario_Icon.png" },
-  { name: "Iggy", icon: "Charakter-Icons/MK8DX_Iggy_Icon.png" },
-  { name: "Isabelle", icon: "Charakter-Icons/MK8DX_Isabelle_Icon.png" },
-  { name: "Kamek", icon: "Charakter-Icons/MK8DX_Kamek_Icon.png" },
-  { name: "King Boo", icon: "Charakter-Icons/MK8DX_King_Boo_Icon.png" },
-  { name: "Koopa Troopa", icon: "Charakter-Icons/MK8DX_Koopa_Troopa_Icon.png" },
-  { name: "Lakitu", icon: "Charakter-Icons/MK8DX_Lakitu_Icon.png" },
-  { name: "Larry", icon: "Charakter-Icons/MK8DX_Larry_Icon.png" },
-  { name: "Lemmy", icon: "Charakter-Icons/MK8DX_Lemmy_Icon.png" },
-  { name: "Link", icon: "Charakter-Icons/MK8DX_Link_Icon.png" },
-  { name: "Ludwig", icon: "Charakter-Icons/MK8DX_Ludwig_Icon.png" },
-  { name: "Luigi", icon: "Charakter-Icons/MK8DX_Luigi_Icon.png" },
-  { name: "Inkling Boy", icon: "Charakter-Icons/MK8DX_Male_Inkling_Icon.png" },
-  { name: "Villager (Male)", icon: "Charakter-Icons/MK8DX_Male_Villager_Icon.png" },
-  { name: "Mario", icon: "Charakter-Icons/MK8DX_Mario_Icon.png" },
-  { name: "Metal Mario", icon: "Charakter-Icons/MK8DX_Metal_Mario_Icon.png" },
-  { name: "Morton", icon: "Charakter-Icons/MK8DX_Morton_Icon.png" },
-  { name: "Pauline", icon: "Charakter-Icons/MK8DX_Pauline_Icon.png" },
-  { name: "Peach", icon: "Charakter-Icons/MK8DX_Peach_Icon.png" },
-  { name: "Peachette", icon: "Charakter-Icons/MK8DX_Peachette_Icon.png" },
-  { name: "Petey Piranha", icon: "Charakter-Icons/MK8DX_Petey_Piranha_Icon.png" },
-  { name: "Pink Gold Peach", icon: "Charakter-Icons/MK8DX_Pink_Gold_Peach_Icon.png" },
-  { name: "Rosalina", icon: "Charakter-Icons/MK8DX_Rosalina_Icon.png" },
-  { name: "Roy", icon: "Charakter-Icons/MK8DX_Roy_Icon.png" },
-  { name: "Shy Guy", icon: "Charakter-Icons/MK8DX_Shy_Guy_Icon.png" },
-  { name: "Tanooki Mario", icon: "Charakter-Icons/MK8DX_Tanooki_Mario_Icon.png" },
-  { name: "Toad", icon: "Charakter-Icons/MK8DX_Toad_Icon.png" },
-  { name: "Toadette", icon: "Charakter-Icons/MK8DX_Toadette_Icon.png" },
-  { name: "Waluigi", icon: "Charakter-Icons/MK8DX_Waluigi_Icon.png" },
-  { name: "Wario", icon: "Charakter-Icons/MK8DX_Wario_Icon.png" },
-  { name: "Wendy", icon: "Charakter-Icons/MK8DX_Wendy_Icon.png" },
-  { name: "Wiggler", icon: "Charakter-Icons/MK8DX_Wiggler_Icon.png" },
-  { name: "Yoshi", icon: "Charakter-Icons/MK8DX_Yoshi_Icon.png" },
+  { name: "Mario", tag: "Der Allrounder" },
+  { name: "Luigi", tag: "Grüner Blitz" },
+  { name: "Peach", tag: "Königliche Power" },
+  { name: "Daisy", tag: "Blumiger Sprint" },
+  { name: "Rosalina", tag: "Sternenglanz" },
+  { name: "Yoshi", tag: "Turbo Dino" },
+  { name: "Toad", tag: "Pilz-Rakete" },
+  { name: "Toadette", tag: "Pilz-Prinzessin" },
+  { name: "Bowser", tag: "Panzersprint" },
+  { name: "Bowser Jr.", tag: "Chaos Kid" },
+  { name: "Donkey Kong", tag: "Bananen-Boost" },
+  { name: "Diddy Kong", tag: "Fass-Boost" },
+  { name: "Wario", tag: "Goldgräber" },
+  { name: "Waluigi", tag: "Schabernack" },
+  { name: "Koopa", tag: "Panzer-Drifter" },
+  { name: "Shy Guy", tag: "Masken-Mystery" },
+  { name: "Baby Mario", tag: "Mini-Macht" },
+  { name: "Baby Peach", tag: "Kindskopf-Kick" },
+  { name: "Baby Luigi", tag: "Nano Nitro" },
+  { name: "Baby Daisy", tag: "Windel-Drift" },
+  { name: "Metal Mario", tag: "Stahl-Speed" },
+  { name: "King Boo", tag: "Spuk-Sprint" },
+  { name: "Petey Piranha", tag: "Pflanzen-Power" },
+  { name: "Link", tag: "Hylianer Hit" },
+  { name: "Isabelle", tag: "Tierische Turbo" },
+  { name: "Inkling Girl", tag: "Farbenrausch" },
+  { name: "Inkling Boy", tag: "Spritz-Slalom" }
 ];
 
 const spinDisplay = document.querySelector("#spinDisplay");
@@ -88,13 +35,16 @@ const assignmentList = document.querySelector("#assignmentList");
 const assignmentTemplate = document.querySelector("#assignmentTemplate");
 const feedback = document.querySelector("#feedback");
 const remaining = document.querySelector("#remaining");
-const characterGrid = document.querySelector("#characterGrid");
 
 let availableCharacters = [...characters];
 const assignments = new Map();
 
-function normalizeKey(value) {
-  return value.toLowerCase().trim();
+function updateRemainingText() {
+  if (availableCharacters.length === 0) {
+    remaining.textContent = "Alle Charaktere wurden vergeben!";
+  } else {
+    remaining.textContent = `${availableCharacters.length} Charaktere sind noch im Item-Block.`;
+  }
 }
 
 function showFeedback(message, isSuccess = false) {
@@ -102,55 +52,11 @@ function showFeedback(message, isSuccess = false) {
   feedback.classList.toggle("is-success", isSuccess);
 }
 
-function updateRemainingText() {
-  if (availableCharacters.length === 0) {
-    remaining.textContent = "Alle Charaktere wurden vergeben!";
-    assignButton.disabled = true;
-    playerNameInput.disabled = true;
-  } else {
-    remaining.textContent = `${availableCharacters.length} Charaktere sind noch verfügbar.`;
-    assignButton.disabled = false;
-    playerNameInput.disabled = false;
-  }
-}
-
-function createCharacterTile(character) {
-  const element = document.createElement("li");
-  element.className = "character-grid__item";
-  element.dataset.character = normalizeKey(character.name);
-  element.innerHTML = `
-    <div class="character-tile">
-      <span class="character-tile__name">${character.name}</span>
-      <img src="${character.icon}" alt="${character.name}" class="character-tile__icon" loading="lazy">
-    </div>
-  `;
-  return element;
-}
-
-function renderCharacterGrid() {
-  const fragment = document.createDocumentFragment();
-  characters.forEach((character) => {
-    fragment.append(createCharacterTile(character));
-  });
-  characterGrid.append(fragment);
-}
-
-function markCharacterAsAssigned(character) {
-  const tile = characterGrid.querySelector(
-    `[data-character="${normalizeKey(character.name)}"]`
-  );
-  if (tile) {
-    tile.classList.add("is-assigned");
-  }
-}
-
 function createAssignmentCard(playerName, character) {
   const element = assignmentTemplate.content.firstElementChild.cloneNode(true);
   element.querySelector(".assignment-card__player").textContent = playerName;
-  element.querySelector(".assignment-card__name").textContent = character.name;
-  const icon = element.querySelector(".assignment-card__icon");
-  icon.src = character.icon;
-  icon.alt = character.name;
+  element.querySelector(".assignment-card__character").textContent = character.name;
+  element.querySelector(".assignment-card__tagline").textContent = `„${character.tag}“`;
   element.style.setProperty("--glow", randomGlow());
   return element;
 }
@@ -170,27 +76,57 @@ function removeCharacter(target) {
   availableCharacters = availableCharacters.filter((character) => character !== target);
 }
 
-function updatePreview(character) {
-  if (!character) {
-    spinDisplay.innerHTML = '<span class="preview__placeholder">?</span>';
-    return;
+function easeOutQuad(t) {
+  return t * (2 - t);
+}
+
+function spinThroughCharacters(finalCharacter) {
+  const totalSpins = 26;
+  const baseDelay = 60;
+  const maxAdditionalDelay = 150;
+
+  spinDisplay.classList.add("is-spinning");
+  assignButton.disabled = true;
+  playerNameInput.disabled = true;
+
+  for (let i = 0; i < totalSpins; i++) {
+    const progress = i / (totalSpins - 1);
+    const eased = easeOutQuad(progress);
+    const delay = baseDelay * i + maxAdditionalDelay * eased * i * 0.35;
+
+    setTimeout(() => {
+      const current = i === totalSpins - 1 ? finalCharacter : pickRandomCharacter();
+      updateSpinDisplay(current, i === totalSpins - 1);
+    }, delay);
   }
 
-  spinDisplay.innerHTML = `
-    <span class="preview__name">${character.name}</span>
-    <img src="${character.icon}" alt="${character.name}" class="preview__icon">
-  `;
+  const totalDuration = baseDelay * totalSpins + maxAdditionalDelay * easeOutQuad(1) * totalSpins * 0.35;
+
+  setTimeout(() => {
+    spinDisplay.classList.remove("is-spinning");
+    spinDisplay.classList.add("is-final");
+    setTimeout(() => spinDisplay.classList.remove("is-final"), 1200);
+    assignButton.disabled = false;
+    playerNameInput.disabled = false;
+  }, totalDuration + 80);
+
+  return totalDuration;
+}
+
+function updateSpinDisplay(character, isFinal = false) {
+  if (isFinal) {
+    spinDisplay.innerHTML = `<span class="display__name">${character.name}</span><span class="display__tag">${character.tag}</span>`;
+    spinDisplay.classList.add("is-final");
+  } else {
+    spinDisplay.textContent = character.name;
+    spinDisplay.classList.remove("is-final");
+  }
 }
 
 function addAssignment(playerName, character) {
-  assignments.set(normalizeKey(playerName), character.name);
+  assignments.set(playerName.toLowerCase(), character.name);
   const card = createAssignmentCard(playerName, character);
   assignmentList.append(card);
-}
-
-function resetForm() {
-  playerNameInput.value = "";
-  playerNameInput.focus();
 }
 
 function handleAssignment() {
@@ -201,8 +137,7 @@ function handleAssignment() {
     return;
   }
 
-  const key = normalizeKey(rawName);
-  if (assignments.has(key)) {
+  if (assignments.has(rawName.toLowerCase())) {
     showFeedback("Dieser Spielername hat bereits einen Charakter erhalten.");
     return;
   }
@@ -213,13 +148,18 @@ function handleAssignment() {
   }
 
   const chosenCharacter = pickRandomCharacter();
-  showFeedback(`${rawName} erhält ${chosenCharacter.name}!`, true);
-  updatePreview(chosenCharacter);
-  removeCharacter(chosenCharacter);
-  markCharacterAsAssigned(chosenCharacter);
-  addAssignment(rawName, chosenCharacter);
-  updateRemainingText();
-  resetForm();
+  const animationDuration = spinThroughCharacters(chosenCharacter);
+
+  showFeedback("Item-Block wird geöffnet...", true);
+
+  setTimeout(() => {
+    removeCharacter(chosenCharacter);
+    addAssignment(rawName, chosenCharacter);
+    updateRemainingText();
+    showFeedback(`${rawName} erhält ${chosenCharacter.name}!`, true);
+    playerNameInput.value = "";
+    playerNameInput.focus();
+  }, animationDuration + 120);
 }
 
 assignButton.addEventListener("click", handleAssignment);
@@ -230,6 +170,4 @@ playerNameInput.addEventListener("keydown", (event) => {
   }
 });
 
-renderCharacterGrid();
-updatePreview();
 updateRemainingText();
