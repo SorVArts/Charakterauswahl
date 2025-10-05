@@ -26,10 +26,22 @@
                 <div class="roulette__controls">
                     <label class="input__label" for="playerName">Spielername</label>
                     <input type="text" id="playerName" class="input" placeholder="z.B. Lightning Lisa">
-                    <button id="assignButton" class="button">
-                        <span class="button__icon" aria-hidden="true">🎲</span>
-                        Zufall starten
-                    </button>
+                    <div class="roulette__actions">
+                        <button id="assignButton" class="button">
+                            <span class="button__icon" aria-hidden="true">🎲</span>
+                            Zufall starten
+                        </button>
+                        <button
+                            id="soundToggle"
+                            class="sound-toggle"
+                            type="button"
+                            aria-pressed="false"
+                            aria-label="Sound deaktivieren"
+                            title="Sound deaktivieren"
+                        >
+                            <span class="sound-toggle__icon" aria-hidden="true">🔊</span>
+                        </button>
+                    </div>
                 </div>
                 <p id="feedback" class="feedback" role="status"></p>
                 <p id="remaining" class="remaining"></p>
@@ -52,6 +64,7 @@
         </li>
     </template>
 
+    <audio id="spinAudio" src="Sound/mario-kart-wii-item-box-sound-effect-128-ytshorts.savetube.me.mp3" preload="auto"></audio>
     <script src="script.js"></script>
 </body>
 </html>
