@@ -95,8 +95,10 @@ const remaining = document.querySelector("#remaining");
 const soundToggle = document.querySelector("#soundToggle");
 const soundToggleIcon = document.querySelector(".sound-toggle__icon");
 const spinAudio = document.querySelector("#spinAudio");
+const appRoot = document.querySelector(".app");
 const rouletteSection = document.querySelector(".roulette");
 const teamsSection = document.querySelector(".teams");
+const assignmentsSection = document.querySelector(".assignments");
 const startTeamsButton = document.querySelector("#startTeamsButton");
 const drawTeamButton = document.querySelector("#drawTeamButton");
 const downloadTeamsButton = document.querySelector("#downloadTeamsButton");
@@ -307,12 +309,20 @@ function beginTeamPhase() {
   teamPhaseInitialized = true;
   prepareTeams();
 
+  if (appRoot) {
+    appRoot.classList.add("app--teams");
+  }
+
   if (rouletteSection) {
     rouletteSection.classList.add("is-hidden");
   }
 
   if (teamsSection) {
     teamsSection.classList.remove("is-hidden");
+  }
+
+  if (assignmentsSection) {
+    assignmentsSection.classList.add("is-hidden");
   }
 
   if (startTeamsButton) {
