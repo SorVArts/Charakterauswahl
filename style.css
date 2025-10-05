@@ -42,6 +42,10 @@ body::before {
     z-index: -1;
 }
 
+.is-hidden {
+    display: none !important;
+}
+
 .app {
     width: min(1080px, 100%);
     height: 100%;
@@ -189,6 +193,11 @@ body::before {
     gap: 0.75rem;
 }
 
+.roulette__team-button {
+    justify-content: center;
+    width: 100%;
+}
+
 .sound-toggle {
     width: 3rem;
     height: 3rem;
@@ -268,6 +277,23 @@ body::before {
     background: linear-gradient(135deg, var(--primary), var(--primary-dark));
     box-shadow: 0 16px 30px rgba(255, 140, 66, 0.35);
     transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.button--secondary {
+    background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+    color: #f9f9ff;
+    box-shadow: 0 16px 30px rgba(123, 91, 255, 0.35);
+}
+
+.button--ghost {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text);
+    box-shadow: none;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.button--ghost:hover:not(:disabled) {
+    box-shadow: 0 14px 28px rgba(255, 255, 255, 0.18);
 }
 
 .button:hover:not(:disabled) {
@@ -427,6 +453,177 @@ body::before {
     white-space: normal;
     justify-self: end;
     min-width: 0;
+}
+
+.teams {
+    background: rgba(11, 13, 42, 0.8);
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1.25rem, 3vw, 2rem);
+    position: relative;
+    overflow: hidden;
+}
+
+.teams::before {
+    content: "";
+    position: absolute;
+    inset: -30% -40%;
+    background: conic-gradient(from 90deg, rgba(123, 91, 255, 0.22), transparent 140deg);
+    filter: blur(80px);
+    opacity: 0.8;
+    pointer-events: none;
+}
+
+.teams__header {
+    display: grid;
+    gap: 0.85rem;
+    position: relative;
+    z-index: 1;
+}
+
+.teams__title {
+    font-family: "Press Start 2P", sans-serif;
+    font-size: clamp(1.05rem, 2.5vw, 1.35rem);
+    letter-spacing: 0.08rem;
+}
+
+.teams__status {
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+.teams__controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    position: relative;
+    z-index: 1;
+}
+
+.teams__controls .button {
+    flex: 0 0 auto;
+}
+
+.team-reveal {
+    min-height: clamp(120px, 15vw, 160px);
+    display: grid;
+    align-content: center;
+    justify-items: center;
+    gap: 0.8rem;
+    text-align: center;
+    padding: 1.2rem;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(8, 10, 32, 0.7);
+    position: relative;
+    z-index: 1;
+    transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.team-reveal.is-empty {
+    border-style: dashed;
+    border-color: rgba(255, 255, 255, 0.18);
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.team-card {
+    display: grid;
+    gap: 1rem;
+    width: 100%;
+}
+
+.team-card__title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.team-card__members {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.team-member {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.75rem;
+    align-items: center;
+    padding: 0.85rem 1rem;
+    border-radius: 14px;
+    background: rgba(16, 19, 60, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.25);
+}
+
+.team-member__icon {
+    width: clamp(52px, 7vw, 64px);
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.35));
+}
+
+.team-member__details {
+    display: grid;
+    gap: 0.25rem;
+    text-align: left;
+}
+
+.team-member__player {
+    font-weight: 600;
+}
+
+.team-member__character {
+    color: var(--text-muted);
+}
+
+.team-list {
+    list-style: none;
+    display: grid;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.team-list__item {
+    background: rgba(11, 12, 38, 0.85);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1.1rem 1.35rem;
+    display: grid;
+    gap: 0.75rem;
+}
+
+.team-list__item h3 {
+    font-size: 1rem;
+    color: var(--accent);
+    letter-spacing: 0.05rem;
+}
+
+.team-list__item ul {
+    list-style: none;
+    display: grid;
+    gap: 0.6rem;
+}
+
+.team-list__item li {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 0.75rem;
+    align-items: baseline;
+}
+
+.team-list__item li span {
+    display: inline-flex;
+    gap: 0.35rem;
+}
+
+.team-list__character {
+    color: var(--text-muted);
 }
 
 @keyframes rotate {

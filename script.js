@@ -95,10 +95,22 @@ const remaining = document.querySelector("#remaining");
 const soundToggle = document.querySelector("#soundToggle");
 const soundToggleIcon = document.querySelector(".sound-toggle__icon");
 const spinAudio = document.querySelector("#spinAudio");
+const rouletteSection = document.querySelector(".roulette");
+const teamsSection = document.querySelector(".teams");
+const startTeamsButton = document.querySelector("#startTeamsButton");
+const drawTeamButton = document.querySelector("#drawTeamButton");
+const downloadTeamsButton = document.querySelector("#downloadTeamsButton");
+const teamReveal = document.querySelector("#teamReveal");
+const teamStatus = document.querySelector("#teamStatus");
+const teamList = document.querySelector("#teamList");
 
 let availableCharacters = [...characters];
 const assignments = new Map();
 let isMuted = false;
+const playerAssignments = [];
+let teamQueue = [];
+let revealedTeams = [];
+let teamPhaseInitialized = false;
 
 function updateAssignmentListLayout() {
   const itemCount = assignmentList.childElementCount;
@@ -191,7 +203,13 @@ function addAssignment(playerName, character) {
   assignments.set(playerName.toLowerCase(), character.name);
   const card = createAssignmentCard(playerName, character);
   assignmentList.append(card);
+  playerAssignments.push({
+    playerName,
+    characterName: character.name,
+    characterIcon: character.icon,
+  });
   updateAssignmentListLayout();
+  updateTeamStartAvailability();
   requestAnimationFrame(() => {
     assignmentList.scrollTo({ top: assignmentList.scrollHeight, behavior: "smooth" });
   });
@@ -235,6 +253,9 @@ function handleAssignment() {
     showFeedback(`${rawName} erhält ${chosenCharacter.name}!`, true);
     playerNameInput.value = "";
     playerNameInput.focus();
+    if (availableCharacters.length === 0) {
+      beginTeamPhase();
+    }
   }, animationDuration + 120);
 }
 
@@ -267,7 +288,278 @@ if (soundToggle) {
   });
 }
 
+if (startTeamsButton) {
+  startTeamsButton.addEventListener("click", beginTeamPhase);
+}
+
 updateSoundToggle();
 
 updateRemainingText();
 updateAssignmentListLayout();
+updateTeamStartAvailability();
+
+function beginTeamPhase() {
+  if (teamPhaseInitialized) {
+    return;
+  }
+
+  teamPhaseInitialized = true;
+  prepareTeams();
+
+  if (rouletteSection) {
+    rouletteSection.classList.add("is-hidden");
+  }
+
+  if (teamsSection) {
+    teamsSection.classList.remove("is-hidden");
+  }
+
+  if (startTeamsButton) {
+    startTeamsButton.classList.add("is-hidden");
+    startTeamsButton.disabled = true;
+  }
+
+  if (teamList) {
+    teamList.innerHTML = "";
+  }
+
+  if (teamReveal) {
+    teamReveal.classList.add("is-empty");
+    teamReveal.textContent =
+      teamQueue.length > 0
+        ? "Bereit? Drücke auf \"Nächstes Team ziehen\"!"
+        : "Es konnten keine vollständigen Teams gebildet werden.";
+  }
+
+  if (teamStatus) {
+    if (playerAssignments.length < 2) {
+      teamStatus.textContent =
+        "Für die Team-Auslosung werden mindestens zwei Spieler benötigt.";
+    } else {
+      const remainingTeams = teamQueue.length;
+      const teamWord = remainingTeams === 1 ? "Team" : "Teams";
+      const verb = remainingTeams === 1 ? "wartet" : "warten";
+      teamStatus.textContent = `Es ${verb} ${remainingTeams} ${teamWord} auf ihre Enthüllung!`;
+    }
+  }
+
+  if (drawTeamButton) {
+    drawTeamButton.disabled = teamQueue.length === 0;
+    drawTeamButton.addEventListener("click", revealNextTeam);
+  }
+
+  if (downloadTeamsButton) {
+    downloadTeamsButton.addEventListener("click", downloadTeams);
+  }
+}
+
+function updateTeamStartAvailability() {
+  if (!startTeamsButton || teamPhaseInitialized) {
+    return;
+  }
+
+  if (playerAssignments.length >= 2) {
+    startTeamsButton.classList.remove("is-hidden");
+    startTeamsButton.disabled = false;
+  } else {
+    startTeamsButton.classList.add("is-hidden");
+  }
+}
+
+function prepareTeams() {
+  teamQueue = [];
+  revealedTeams = [];
+
+  if (playerAssignments.length === 0) {
+    return;
+  }
+
+  const shuffled = [...playerAssignments];
+
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+
+  for (let i = 0; i < shuffled.length; i += 2) {
+    const team = shuffled.slice(i, i + 2);
+    if (team.length === 2) {
+      teamQueue.push(team);
+    } else if (team.length === 1 && playerAssignments.length > 1) {
+      teamQueue.push(team);
+    }
+  }
+}
+
+function revealNextTeam() {
+  if (teamQueue.length === 0) {
+    finalizeTeams();
+    return;
+  }
+
+  const team = teamQueue.shift();
+  revealedTeams.push(team);
+
+  renderCurrentTeam(team, revealedTeams.length);
+  appendTeamToList(team, revealedTeams.length);
+
+  if (teamStatus) {
+    if (teamQueue.length === 0) {
+      teamStatus.textContent = "Das war das letzte Team!";
+    } else {
+      const teamWord = teamQueue.length === 1 ? "Team" : "Teams";
+      const verb = teamQueue.length === 1 ? "wartet" : "warten";
+      teamStatus.textContent = `Noch ${teamQueue.length} ${teamWord} ${verb} auf ihre Enthüllung.`;
+    }
+  }
+
+  if (teamQueue.length === 0) {
+    finalizeTeams();
+  }
+}
+
+function renderCurrentTeam(team, index) {
+  if (!teamReveal) {
+    return;
+  }
+
+  teamReveal.classList.remove("is-empty");
+  teamReveal.innerHTML = "";
+
+  const card = document.createElement("div");
+  card.className = "team-card";
+
+  const title = document.createElement("h3");
+  title.className = "team-card__title";
+  title.textContent = team.length === 1 ? `Team ${index} – Solo` : `Team ${index}`;
+  card.append(title);
+
+  const members = document.createElement("div");
+  members.className = "team-card__members";
+
+  team.forEach((member) => {
+    const memberElement = document.createElement("div");
+    memberElement.className = "team-member";
+
+    const icon = document.createElement("img");
+    icon.className = "team-member__icon";
+    icon.src = member.characterIcon;
+    icon.alt = member.characterName;
+
+    const details = document.createElement("div");
+    details.className = "team-member__details";
+
+    const player = document.createElement("span");
+    player.className = "team-member__player";
+    player.textContent = member.playerName;
+
+    const character = document.createElement("span");
+    character.className = "team-member__character";
+    character.textContent = member.characterName;
+
+    details.append(player, character);
+    memberElement.append(icon, details);
+    members.append(memberElement);
+  });
+
+  if (team.length === 1) {
+    const note = document.createElement("p");
+    note.className = "team-member__character";
+    note.textContent = "Dieser Fahrer erhält ein Freilos.";
+    members.append(note);
+  }
+
+  card.append(members);
+  teamReveal.append(card);
+
+  teamReveal.style.transform = "scale(1.04)";
+  requestAnimationFrame(() => {
+    teamReveal.style.transform = "scale(1)";
+  });
+}
+
+function appendTeamToList(team, index) {
+  if (!teamList) {
+    return;
+  }
+
+  const item = document.createElement("li");
+  item.className = "team-list__item";
+
+  const heading = document.createElement("h3");
+  heading.textContent = team.length === 1 ? `Team ${index} – Solo` : `Team ${index}`;
+  item.append(heading);
+
+  const memberList = document.createElement("ul");
+
+  team.forEach((member) => {
+    const memberItem = document.createElement("li");
+
+    const player = document.createElement("span");
+    player.textContent = member.playerName;
+
+    const character = document.createElement("span");
+    character.className = "team-list__character";
+    character.textContent = member.characterName;
+
+    memberItem.append(player, character);
+    memberList.append(memberItem);
+  });
+
+  if (team.length === 1) {
+    const soloInfo = document.createElement("li");
+    soloInfo.className = "team-list__character";
+    soloInfo.textContent = "Freilos";
+    memberList.append(soloInfo);
+  }
+
+  item.append(memberList);
+  teamList.append(item);
+}
+
+function finalizeTeams() {
+  if (drawTeamButton) {
+    drawTeamButton.disabled = true;
+  }
+
+  if (downloadTeamsButton) {
+    downloadTeamsButton.classList.remove("is-hidden");
+    downloadTeamsButton.disabled = false;
+  }
+
+  if (teamStatus) {
+    teamStatus.textContent =
+      revealedTeams.length > 0
+        ? "Alle Teams wurden ausgelost. Viel Spaß beim Rennen!"
+        : "Es konnten keine Teams gebildet werden.";
+  }
+}
+
+function downloadTeams() {
+  if (revealedTeams.length === 0) {
+    return;
+  }
+
+  const rows = [["Team", "Spieler", "Charakter"]];
+
+  revealedTeams.forEach((team, index) => {
+    const teamName = `Team ${index + 1}`;
+    team.forEach((member) => {
+      rows.push([teamName, member.playerName, member.characterName]);
+    });
+  });
+
+  const csvContent = rows
+    .map((row) => row.map((value) => `"${String(value).replace(/"/g, '""')}"`).join(";"))
+    .join("\n");
+
+  const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "mariokart-teams.csv";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+}
