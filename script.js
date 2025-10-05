@@ -151,7 +151,7 @@ function easeOutQuad(t) {
 
 function spinThroughCharacters(finalCharacter) {
   const totalSpins = 26;
-  const totalDuration = 3000;
+  const totalDuration = 3500;
 
   spinDisplay.classList.add("is-spinning");
   assignButton.disabled = true;
