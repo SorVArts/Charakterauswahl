@@ -106,6 +106,8 @@ const teamReveal = document.querySelector("#teamReveal");
 const teamStatus = document.querySelector("#teamStatus");
 const teamList = document.querySelector("#teamList");
 
+const TEAM_REVEAL_DELAY = 2000;
+
 let availableCharacters = [...characters];
 const assignments = new Map();
 let isMuted = false;
@@ -114,6 +116,7 @@ let teamQueue = [];
 let revealedTeams = [];
 let teamPhaseInitialized = false;
 let teamRevealHighlightTimeout;
+let pendingTeamRevealTimeout;
 
 function updateAssignmentListLayout() {
   const itemCount = assignmentList.childElementCount;
@@ -337,6 +340,7 @@ function beginTeamPhase() {
   if (teamReveal) {
     teamReveal.classList.add("is-empty");
     teamReveal.classList.remove("team-reveal--active");
+    teamReveal.classList.remove("team-reveal--pending");
     teamReveal.textContent =
       teamQueue.length > 0
         ? "Bereit? Drücke auf \"Nächstes Team ziehen\"!"
@@ -409,25 +413,64 @@ function revealNextTeam() {
     return;
   }
 
+  const teamIndex = revealedTeams.length + 1;
   const team = teamQueue.shift();
-  revealedTeams.push(team);
 
-  renderCurrentTeam(team, revealedTeams.length);
-  appendTeamToList(team, revealedTeams.length);
+  if (teamReveal) {
+    teamReveal.classList.remove("team-reveal--active");
+    teamReveal.classList.remove("is-empty");
+    teamReveal.classList.add("team-reveal--pending");
+    teamReveal.innerHTML = `
+      <div class="team-reveal__countdown">
+        <div class="team-reveal__halo"></div>
+        <div class="team-reveal__spinner"></div>
+        <span class="team-reveal__text">Team ${teamIndex} wird enthüllt...</span>
+      </div>
+    `;
+  }
+
+  if (drawTeamButton) {
+    drawTeamButton.disabled = true;
+  }
 
   if (teamStatus) {
-    if (teamQueue.length === 0) {
-      teamStatus.textContent = "Das war das letzte Team!";
-    } else {
-      const teamWord = teamQueue.length === 1 ? "Team" : "Teams";
-      const verb = teamQueue.length === 1 ? "wartet" : "warten";
-      teamStatus.textContent = `Noch ${teamQueue.length} ${teamWord} ${verb} auf ihre Enthüllung.`;
-    }
+    teamStatus.textContent = "Spannung! Das nächste Team wird vorbereitet...";
   }
 
-  if (teamQueue.length === 0) {
-    finalizeTeams();
+  if (pendingTeamRevealTimeout) {
+    clearTimeout(pendingTeamRevealTimeout);
   }
+
+  pendingTeamRevealTimeout = setTimeout(() => {
+    pendingTeamRevealTimeout = undefined;
+
+    revealedTeams.push(team);
+
+    if (teamReveal) {
+      teamReveal.classList.remove("team-reveal--pending");
+    }
+
+    renderCurrentTeam(team, revealedTeams.length);
+    appendTeamToList(team, revealedTeams.length);
+
+    if (drawTeamButton) {
+      drawTeamButton.disabled = teamQueue.length === 0;
+    }
+
+    if (teamStatus) {
+      if (teamQueue.length === 0) {
+        teamStatus.textContent = "Das war das letzte Team!";
+      } else {
+        const teamWord = teamQueue.length === 1 ? "Team" : "Teams";
+        const verb = teamQueue.length === 1 ? "wartet" : "warten";
+        teamStatus.textContent = `Noch ${teamQueue.length} ${teamWord} ${verb} auf ihre Enthüllung.`;
+      }
+    }
+
+    if (teamQueue.length === 0) {
+      finalizeTeams();
+    }
+  }, TEAM_REVEAL_DELAY);
 }
 
 function renderCurrentTeam(team, index) {
@@ -436,6 +479,7 @@ function renderCurrentTeam(team, index) {
   }
 
   teamReveal.classList.remove("is-empty");
+  teamReveal.classList.remove("team-reveal--pending");
   teamReveal.innerHTML = "";
 
   const card = document.createElement("div");
@@ -539,6 +583,11 @@ function finalizeTeams() {
     drawTeamButton.disabled = true;
   }
 
+  if (pendingTeamRevealTimeout) {
+    clearTimeout(pendingTeamRevealTimeout);
+    pendingTeamRevealTimeout = undefined;
+  }
+
   if (teamRevealHighlightTimeout) {
     clearTimeout(teamRevealHighlightTimeout);
     teamRevealHighlightTimeout = undefined;
@@ -546,6 +595,7 @@ function finalizeTeams() {
 
   if (teamReveal) {
     teamReveal.classList.remove("team-reveal--active");
+    teamReveal.classList.remove("team-reveal--pending");
   }
 
   if (downloadTeamsButton) {
