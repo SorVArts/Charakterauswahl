@@ -74,6 +74,15 @@ body::before {
     align-items: stretch;
 }
 
+.app--teams .app__layout {
+    grid-template-columns: 1fr;
+}
+
+.app--teams .teams {
+    max-width: min(760px, 100%);
+    margin: 0 auto;
+}
+
 .app__title {
     font-family: "Press Start 2P", "Rubik", sans-serif;
     font-size: clamp(1.4rem, 2.8vw, 1.9rem);
