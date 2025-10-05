@@ -191,11 +191,21 @@ body::before {
     display: flex;
     align-items: center;
     gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.roulette__actions .button {
+    flex: 1 1 clamp(180px, 45%, 240px);
+}
+
+.roulette__actions .sound-toggle {
+    flex: 0 0 auto;
+    align-self: center;
 }
 
 .roulette__team-button {
     justify-content: center;
-    width: 100%;
+    min-width: clamp(160px, 40%, 220px);
 }
 
 .sound-toggle {
@@ -465,6 +475,8 @@ body::before {
     gap: clamp(1.25rem, 3vw, 2rem);
     position: relative;
     overflow: hidden;
+    min-height: 0;
+    flex: 1 1 auto;
 }
 
 .teams::before {
@@ -517,10 +529,12 @@ body::before {
     padding: 1.2rem;
     border-radius: 16px;
     border: 1px solid rgba(255, 255, 255, 0.12);
-    background: rgba(8, 10, 32, 0.7);
+    background: linear-gradient(145deg, rgba(10, 14, 48, 0.9), rgba(28, 16, 68, 0.75));
     position: relative;
     z-index: 1;
-    transition: transform 220ms ease, box-shadow 220ms ease;
+    overflow: hidden;
+    box-shadow: inset 0 12px 24px rgba(255, 255, 255, 0.04), 0 24px 50px rgba(0, 0, 0, 0.35);
+    transition: transform 260ms ease, box-shadow 260ms ease;
 }
 
 .team-reveal.is-empty {
@@ -530,10 +544,40 @@ body::before {
     font-style: italic;
 }
 
+.team-reveal--active {
+    transform: scale(1.02);
+    box-shadow: inset 0 12px 30px rgba(255, 255, 255, 0.08), 0 26px 55px rgba(0, 0, 0, 0.45), 0 0 45px rgba(123, 91, 255, 0.35);
+}
+
+.team-reveal::before,
+.team-reveal::after {
+    content: "";
+    position: absolute;
+    inset: -60% -20%;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 179, 71, 0.35), transparent 55%);
+    mix-blend-mode: screen;
+    opacity: 0.6;
+    pointer-events: none;
+    animation: energyPulse 14s linear infinite;
+}
+
+.team-reveal::after {
+    inset: -40% -10%;
+    background: radial-gradient(circle at 70% 60%, rgba(123, 91, 255, 0.4), transparent 50%);
+    animation-duration: 18s;
+    animation-direction: reverse;
+}
+
 .team-card {
     display: grid;
     gap: 1rem;
     width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+.team-card--enter {
+    animation: teamCardEnter 650ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .team-card__title {
@@ -587,6 +631,25 @@ body::before {
     padding-bottom: 0.5rem;
     position: relative;
     z-index: 1;
+    overflow-y: auto;
+    max-height: clamp(240px, 40vh, 420px);
+    padding-right: 0.4rem;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+    min-height: 0;
+}
+
+.team-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.team-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.team-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 999px;
 }
 
 .team-list__item {
@@ -641,6 +704,38 @@ body::before {
     }
     50% {
         transform: scale(1.05);
+    }
+}
+
+@keyframes energyPulse {
+    0% {
+        transform: rotate(0deg) scale(1);
+        opacity: 0.55;
+    }
+    50% {
+        transform: rotate(180deg) scale(1.05);
+        opacity: 0.75;
+    }
+    100% {
+        transform: rotate(360deg) scale(1);
+        opacity: 0.55;
+    }
+}
+
+@keyframes teamCardEnter {
+    0% {
+        transform: scale(0.82) translateY(18px);
+        opacity: 0;
+        filter: blur(6px);
+    }
+    55% {
+        transform: scale(1.06) translateY(-6px);
+        opacity: 1;
+        filter: blur(0);
+    }
+    100% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
     }
 }
 
