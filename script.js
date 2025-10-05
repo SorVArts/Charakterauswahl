@@ -111,6 +111,7 @@ const playerAssignments = [];
 let teamQueue = [];
 let revealedTeams = [];
 let teamPhaseInitialized = false;
+let teamRevealHighlightTimeout;
 
 function updateAssignmentListLayout() {
   const itemCount = assignmentList.childElementCount;
@@ -325,6 +326,7 @@ function beginTeamPhase() {
 
   if (teamReveal) {
     teamReveal.classList.add("is-empty");
+    teamReveal.classList.remove("team-reveal--active");
     teamReveal.textContent =
       teamQueue.length > 0
         ? "Bereit? Drücke auf \"Nächstes Team ziehen\"!"
@@ -427,7 +429,7 @@ function renderCurrentTeam(team, index) {
   teamReveal.innerHTML = "";
 
   const card = document.createElement("div");
-  card.className = "team-card";
+  card.className = "team-card team-card--enter";
 
   const title = document.createElement("h3");
   title.className = "team-card__title";
@@ -472,10 +474,15 @@ function renderCurrentTeam(team, index) {
   card.append(members);
   teamReveal.append(card);
 
-  teamReveal.style.transform = "scale(1.04)";
-  requestAnimationFrame(() => {
-    teamReveal.style.transform = "scale(1)";
-  });
+  teamReveal.classList.add("team-reveal--active");
+  if (teamRevealHighlightTimeout) {
+    clearTimeout(teamRevealHighlightTimeout);
+  }
+
+  teamRevealHighlightTimeout = setTimeout(() => {
+    teamReveal.classList.remove("team-reveal--active");
+    teamRevealHighlightTimeout = undefined;
+  }, 520);
 }
 
 function appendTeamToList(team, index) {
@@ -520,6 +527,15 @@ function appendTeamToList(team, index) {
 function finalizeTeams() {
   if (drawTeamButton) {
     drawTeamButton.disabled = true;
+  }
+
+  if (teamRevealHighlightTimeout) {
+    clearTimeout(teamRevealHighlightTimeout);
+    teamRevealHighlightTimeout = undefined;
+  }
+
+  if (teamReveal) {
+    teamReveal.classList.remove("team-reveal--active");
   }
 
   if (downloadTeamsButton) {
