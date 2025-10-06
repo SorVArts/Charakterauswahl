@@ -107,12 +107,6 @@ body::before {
     padding-bottom: 1.1rem;
 }
 
-.roulette__note {
-    text-align: center;
-    font-size: 0.95rem;
-    color: var(--text-muted);
-}
-
 .roulette__item-box {
     position: relative;
     background: linear-gradient(145deg, rgba(41, 46, 94, 0.9), rgba(19, 22, 54, 0.85));
@@ -350,6 +344,7 @@ body::before {
     font-size: 0.95rem;
     margin-top: 0.45rem;
     padding-bottom: 0.9rem;
+    text-align: center;
 }
 
 .assignments {
@@ -823,7 +818,7 @@ body::before {
     position: relative;
     z-index: 1;
     overflow-y: auto;
-    max-height: clamp(240px, 40vh, 420px);
+    max-height: clamp(360px, 72vh, 880px);
     padding-right: 0.4rem;
     scrollbar-width: thin;
     scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
