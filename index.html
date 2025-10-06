@@ -57,28 +57,35 @@
             </section>
 
             <section class="teams is-hidden" aria-live="polite">
-                <header class="teams__header">
-                    <h2 class="teams__title">Team-Auslosung</h2>
-                    <p id="teamStatus" class="teams__status">
-                        Alle Fahrer sind bereit! Drücke auf den Button, um das nächste Team zu enthüllen.
-                    </p>
-                </header>
-                <div class="teams__controls">
-                    <button id="drawTeamButton" class="button button--secondary">
-                        <span class="button__icon" aria-hidden="true">⚡️</span>
-                        Nächstes Team ziehen
-                    </button>
-                    <button
-                        id="downloadTeamsButton"
-                        class="button button--ghost is-hidden"
-                        type="button"
-                    >
-                        <span class="button__icon" aria-hidden="true">⬇️</span>
-                        Teams herunterladen
-                    </button>
+                <div class="teams__grid">
+                    <div class="teams__reveal-panel">
+                        <header class="teams__header">
+                            <h2 class="teams__title">Team-Auslosung</h2>
+                            <p id="teamStatus" class="teams__status">
+                                Alle Fahrer sind bereit! Drücke auf den Button, um das nächste Team zu enthüllen.
+                            </p>
+                        </header>
+                        <div class="teams__controls">
+                            <button id="drawTeamButton" class="button button--secondary">
+                                <span class="button__icon" aria-hidden="true">⚡️</span>
+                                Nächstes Team ziehen
+                            </button>
+                            <button
+                                id="downloadTeamsButton"
+                                class="button button--ghost is-hidden"
+                                type="button"
+                            >
+                                <span class="button__icon" aria-hidden="true">⬇️</span>
+                                Teams herunterladen
+                            </button>
+                        </div>
+                        <div id="teamReveal" class="team-reveal" aria-live="assertive"></div>
+                    </div>
+                    <aside class="teams__history">
+                        <h3 class="teams__history-title">Bisher ausgeloste Teams</h3>
+                        <ol id="teamList" class="team-list"></ol>
+                    </aside>
                 </div>
-                <div id="teamReveal" class="team-reveal" aria-live="assertive"></div>
-                <ol id="teamList" class="team-list"></ol>
             </section>
         </div>
     </main>
