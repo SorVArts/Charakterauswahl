@@ -92,6 +92,7 @@ const assignmentList = document.querySelector("#assignmentList");
 const assignmentTemplate = document.querySelector("#assignmentTemplate");
 const feedback = document.querySelector("#feedback");
 const remaining = document.querySelector("#remaining");
+const playerCountDisplay = document.querySelector("#playerCount");
 const soundToggle = document.querySelector("#soundToggle");
 const soundToggleIcon = document.querySelector(".sound-toggle__icon");
 const spinAudio = document.querySelector("#spinAudio");
@@ -129,6 +130,22 @@ function updateAssignmentListLayout() {
   const itemCount = assignmentList.childElementCount;
   const visibleItems = Math.max(1, Math.min(itemCount, 5));
   assignmentList.style.setProperty("--visible-items", visibleItems);
+}
+
+function updatePlayerCount() {
+  if (!playerCountDisplay) {
+    return;
+  }
+
+  const count = playerAssignments.length;
+
+  if (count === 0) {
+    playerCountDisplay.textContent = "Noch keine Spieler:innen gezogen.";
+    return;
+  }
+
+  const label = count === 1 ? "Spieler:in" : "Spieler:innen";
+  playerCountDisplay.textContent = `Insgesamt ${count} ${label} im Rennen.`;
 }
 
 function updateRemainingText() {
@@ -222,6 +239,7 @@ function addAssignment(playerName, character) {
     characterIcon: character.icon,
   });
   updateAssignmentListLayout();
+  updatePlayerCount();
   updateTeamStartAvailability();
   requestAnimationFrame(() => {
     assignmentList.scrollTo({ top: assignmentList.scrollHeight, behavior: "smooth" });
@@ -321,6 +339,7 @@ updateSoundToggle();
 
 updateRemainingText();
 updateAssignmentListLayout();
+updatePlayerCount();
 updateTeamStartAvailability();
 updateTeamHistoryAvailability();
 

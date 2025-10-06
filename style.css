@@ -372,6 +372,13 @@ body::before {
     text-align: center;
 }
 
+.assignments__summary {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    min-height: 1.4rem;
+}
+
 .assignment-list {
     --visible-items: 5;
     --card-gap: 0.9rem;
