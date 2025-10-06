@@ -105,6 +105,11 @@ const downloadTeamsButton = document.querySelector("#downloadTeamsButton");
 const teamReveal = document.querySelector("#teamReveal");
 const teamStatus = document.querySelector("#teamStatus");
 const teamList = document.querySelector("#teamList");
+const showTeamHistoryButton = document.querySelector("#showTeamHistoryButton");
+const teamHistory = document.querySelector("#teamHistory");
+const teamHistoryDialog = document.querySelector("#teamHistoryDialog");
+const teamHistoryEmpty = document.querySelector("#teamHistoryEmpty");
+const teamHistoryCloseButtons = document.querySelectorAll("[data-team-history-close]");
 
 const TEAM_REVEAL_DELAY = 5000;
 
@@ -117,6 +122,7 @@ let revealedTeams = [];
 let teamPhaseInitialized = false;
 let teamRevealHighlightTimeout;
 let pendingTeamRevealTimeout;
+let lastFocusedElementBeforeHistory;
 
 function updateAssignmentListLayout() {
   const itemCount = assignmentList.childElementCount;
@@ -298,11 +304,20 @@ if (startTeamsButton) {
   startTeamsButton.addEventListener("click", beginTeamPhase);
 }
 
+if (showTeamHistoryButton) {
+  showTeamHistoryButton.addEventListener("click", openTeamHistory);
+}
+
+teamHistoryCloseButtons.forEach((button) => {
+  button.addEventListener("click", closeTeamHistory);
+});
+
 updateSoundToggle();
 
 updateRemainingText();
 updateAssignmentListLayout();
 updateTeamStartAvailability();
+updateTeamHistoryAvailability();
 
 function beginTeamPhase() {
   if (teamPhaseInitialized) {
@@ -311,6 +326,9 @@ function beginTeamPhase() {
 
   teamPhaseInitialized = true;
   prepareTeams();
+
+  closeTeamHistory();
+  updateTeamHistoryAvailability();
 
   if (appRoot) {
     appRoot.classList.add("app--teams");
@@ -336,6 +354,8 @@ function beginTeamPhase() {
   if (teamList) {
     teamList.innerHTML = "";
   }
+
+  updateTeamHistoryAvailability();
 
   if (teamReveal) {
     teamReveal.classList.add("is-empty");
@@ -379,6 +399,52 @@ function updateTeamStartAvailability() {
     startTeamsButton.disabled = false;
   } else {
     startTeamsButton.classList.add("is-hidden");
+  }
+}
+
+function updateTeamHistoryAvailability() {
+  if (showTeamHistoryButton) {
+    const hasTeams = revealedTeams.length > 0;
+    showTeamHistoryButton.disabled = !hasTeams;
+  }
+
+  if (teamHistoryEmpty && teamList) {
+    const hasEntries = teamList.children.length > 0;
+    teamHistoryEmpty.classList.toggle("is-hidden", hasEntries);
+  }
+}
+
+function openTeamHistory() {
+  if (!teamHistory || !teamHistoryDialog) {
+    return;
+  }
+
+  lastFocusedElementBeforeHistory = document.activeElement;
+  teamHistory.classList.remove("is-hidden");
+  teamHistory.setAttribute("aria-hidden", "false");
+  teamHistoryDialog.focus({ preventScroll: true });
+  document.addEventListener("keydown", handleTeamHistoryKeydown);
+}
+
+function closeTeamHistory() {
+  if (!teamHistory || !teamHistoryDialog) {
+    return;
+  }
+
+  const wasOpen = !teamHistory.classList.contains("is-hidden");
+  teamHistory.classList.add("is-hidden");
+  teamHistory.setAttribute("aria-hidden", "true");
+  document.removeEventListener("keydown", handleTeamHistoryKeydown);
+
+  if (wasOpen && lastFocusedElementBeforeHistory instanceof HTMLElement) {
+    lastFocusedElementBeforeHistory.focus({ preventScroll: true });
+  }
+}
+
+function handleTeamHistoryKeydown(event) {
+  if (event.key === "Escape") {
+    event.preventDefault();
+    closeTeamHistory();
   }
 }
 
@@ -606,6 +672,7 @@ function appendTeamToList(team, index) {
 
   item.append(memberList);
   teamList.append(item);
+  updateTeamHistoryAvailability();
 }
 
 function finalizeTeams() {
