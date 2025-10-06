@@ -71,6 +71,15 @@
                                 Nächstes Team ziehen
                             </button>
                             <button
+                                id="showTeamHistoryButton"
+                                class="button button--ghost"
+                                type="button"
+                                disabled
+                            >
+                                <span class="button__icon" aria-hidden="true">🕑</span>
+                                Letzte Teams ansehen
+                            </button>
+                            <button
                                 id="downloadTeamsButton"
                                 class="button button--ghost is-hidden"
                                 type="button"
@@ -81,12 +90,42 @@
                         </div>
                         <div id="teamReveal" class="team-reveal" aria-live="assertive"></div>
                     </div>
-                    <aside class="teams__history">
-                        <h3 class="teams__history-title">Bisher ausgeloste Teams</h3>
-                        <ol id="teamList" class="team-list"></ol>
-                    </aside>
                 </div>
             </section>
+            <div
+                id="teamHistory"
+                class="team-history is-hidden"
+                aria-hidden="true"
+            >
+                <div class="team-history__backdrop" data-team-history-close></div>
+                <div
+                    id="teamHistoryDialog"
+                    class="team-history__dialog"
+                    role="dialog"
+                    aria-modal="true"
+                    aria-labelledby="teamHistoryTitle"
+                    tabindex="-1"
+                >
+                    <header class="team-history__header">
+                        <h3 id="teamHistoryTitle" class="team-history__title">
+                            Bisher ausgeloste Teams
+                        </h3>
+                        <button
+                            id="closeTeamHistoryButton"
+                            class="team-history__close"
+                            type="button"
+                            aria-label="Team-Historie schließen"
+                            data-team-history-close
+                        >
+                            ✕
+                        </button>
+                    </header>
+                    <p id="teamHistoryEmpty" class="team-history__empty">
+                        Es wurden noch keine Teams ausgelost.
+                    </p>
+                    <ol id="teamList" class="team-list"></ol>
+                </div>
+            </div>
         </div>
     </main>
 
