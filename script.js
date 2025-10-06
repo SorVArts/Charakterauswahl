@@ -106,6 +106,7 @@ const teamReveal = document.querySelector("#teamReveal");
 const teamStatus = document.querySelector("#teamStatus");
 const teamList = document.querySelector("#teamList");
 const showTeamHistoryButton = document.querySelector("#showTeamHistoryButton");
+const backToRouletteButton = document.querySelector("#backToRouletteButton");
 const teamHistory = document.querySelector("#teamHistory");
 const teamHistoryDialog = document.querySelector("#teamHistoryDialog");
 const teamHistoryEmpty = document.querySelector("#teamHistoryEmpty");
@@ -308,6 +309,10 @@ if (showTeamHistoryButton) {
   showTeamHistoryButton.addEventListener("click", openTeamHistory);
 }
 
+if (backToRouletteButton) {
+  backToRouletteButton.addEventListener("click", returnToRoulette);
+}
+
 teamHistoryCloseButtons.forEach((button) => {
   button.addEventListener("click", closeTeamHistory);
 });
@@ -387,6 +392,70 @@ function beginTeamPhase() {
   if (downloadTeamsButton) {
     downloadTeamsButton.addEventListener("click", downloadTeams);
   }
+}
+
+function returnToRoulette() {
+  closeTeamHistory();
+
+  if (pendingTeamRevealTimeout) {
+    clearTimeout(pendingTeamRevealTimeout);
+    pendingTeamRevealTimeout = undefined;
+  }
+
+  if (teamRevealHighlightTimeout) {
+    clearTimeout(teamRevealHighlightTimeout);
+    teamRevealHighlightTimeout = undefined;
+  }
+
+  teamQueue = [];
+  revealedTeams = [];
+  teamPhaseInitialized = false;
+
+  if (teamReveal) {
+    teamReveal.innerHTML = "";
+    teamReveal.classList.add("is-empty");
+    teamReveal.classList.remove("team-reveal--active");
+    teamReveal.classList.remove("team-reveal--pending");
+    teamReveal.textContent =
+      playerAssignments.length > 1
+        ? "Bereit? Drücke auf \"Nächstes Team ziehen\"!"
+        : "Es konnten keine vollständigen Teams gebildet werden.";
+  }
+
+  if (teamStatus) {
+    teamStatus.textContent =
+      "Alle Fahrer sind bereit! Drücke auf den Button, um das nächste Team zu enthüllen.";
+  }
+
+  if (downloadTeamsButton) {
+    downloadTeamsButton.classList.add("is-hidden");
+    downloadTeamsButton.disabled = true;
+  }
+
+  if (drawTeamButton) {
+    drawTeamButton.disabled = false;
+  }
+
+  renderTeamHistory();
+
+  if (appRoot) {
+    appRoot.classList.remove("app--teams");
+  }
+
+  if (rouletteSection) {
+    rouletteSection.classList.remove("is-hidden");
+  }
+
+  if (teamsSection) {
+    teamsSection.classList.add("is-hidden");
+  }
+
+  if (assignmentsSection) {
+    assignmentsSection.classList.remove("is-hidden");
+  }
+
+  updateTeamStartAvailability();
+  updateTeamHistoryAvailability();
 }
 
 function updateTeamStartAvailability() {
