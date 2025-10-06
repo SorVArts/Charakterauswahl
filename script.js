@@ -106,7 +106,7 @@ const teamReveal = document.querySelector("#teamReveal");
 const teamStatus = document.querySelector("#teamStatus");
 const teamList = document.querySelector("#teamList");
 
-const TEAM_REVEAL_DELAY = 2000;
+const TEAM_REVEAL_DELAY = 5000;
 
 let availableCharacters = [...characters];
 const assignments = new Map();
