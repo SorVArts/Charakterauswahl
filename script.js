@@ -548,29 +548,59 @@ function appendTeamToList(team, index) {
   item.className = "team-list__item";
 
   const heading = document.createElement("h3");
-  heading.textContent = team.length === 1 ? `Team ${index} – Solo` : `Team ${index}`;
+  heading.className = "team-list__heading";
+
+  const badge = document.createElement("span");
+  badge.className = "team-list__badge";
+  badge.textContent = `#${index}`;
+
+  const title = document.createElement("span");
+  title.className = "team-list__title";
+  title.textContent = team.length === 1 ? "Solo" : `Team ${index}`;
+
+  heading.append(badge, title);
+
+  if (team.length === 1) {
+    const soloTag = document.createElement("span");
+    soloTag.className = "team-list__tag";
+    soloTag.textContent = "Freilos";
+    heading.append(soloTag);
+  }
+
   item.append(heading);
 
   const memberList = document.createElement("ul");
+  memberList.className = "team-list__members";
 
   team.forEach((member) => {
     const memberItem = document.createElement("li");
+    memberItem.className = "team-list__member";
+
+    const avatar = document.createElement("img");
+    avatar.className = "team-list__avatar";
+    avatar.src = member.characterIcon;
+    avatar.alt = member.characterName;
+
+    const info = document.createElement("div");
+    info.className = "team-list__info";
 
     const player = document.createElement("span");
+    player.className = "team-list__player";
     player.textContent = member.playerName;
 
     const character = document.createElement("span");
     character.className = "team-list__character";
     character.textContent = member.characterName;
 
-    memberItem.append(player, character);
+    info.append(player, character);
+    memberItem.append(avatar, info);
     memberList.append(memberItem);
   });
 
   if (team.length === 1) {
     const soloInfo = document.createElement("li");
-    soloInfo.className = "team-list__character";
-    soloInfo.textContent = "Freilos";
+    soloInfo.className = "team-list__note";
+    soloInfo.textContent = "Wartet auf den nächsten Team-Partner.";
     memberList.append(soloInfo);
   }
 
