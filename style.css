@@ -612,7 +612,7 @@ body::before {
 .team-history__dialog {
     position: relative;
     width: min(640px, 100%);
-    max-height: min(80vh, 720px);
+    max-height: min(90vh, 780px);
     background: linear-gradient(155deg, rgba(11, 12, 38, 0.96), rgba(20, 13, 54, 0.9));
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -621,7 +621,7 @@ body::before {
     display: grid;
     grid-template-rows: auto auto 1fr;
     gap: clamp(1rem, 2.2vw, 1.5rem);
-    overflow: hidden;
+    overflow: auto;
 }
 
 .team-history__header {
@@ -681,6 +681,9 @@ body::before {
     min-height: 0;
     height: 100%;
     padding-right: 0.6rem;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: clamp(1rem, 2.2vw, 1.4rem);
+    align-content: start;
 }
 
 .team-reveal__countdown {

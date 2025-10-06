@@ -352,7 +352,7 @@ function beginTeamPhase() {
   }
 
   if (teamList) {
-    teamList.innerHTML = "";
+    renderTeamHistory();
   }
 
   updateTeamHistoryAvailability();
@@ -418,6 +418,8 @@ function openTeamHistory() {
   if (!teamHistory || !teamHistoryDialog) {
     return;
   }
+
+  renderTeamHistory();
 
   lastFocusedElementBeforeHistory = document.activeElement;
   teamHistory.classList.remove("is-hidden");
@@ -517,7 +519,9 @@ function revealNextTeam() {
     }
 
     renderCurrentTeam(team, revealedTeams.length);
-    appendTeamToList(team, revealedTeams.length);
+    const shouldPreserveScroll =
+      teamHistory && !teamHistory.classList.contains("is-hidden");
+    renderTeamHistory({ preserveScroll: shouldPreserveScroll });
 
     if (drawTeamButton) {
       drawTeamButton.disabled = teamQueue.length === 0;
@@ -605,11 +609,7 @@ function renderCurrentTeam(team, index) {
   }, 520);
 }
 
-function appendTeamToList(team, index) {
-  if (!teamList) {
-    return;
-  }
-
+function createTeamListItem(team, index) {
   const item = document.createElement("li");
   item.className = "team-list__item";
 
@@ -671,8 +671,31 @@ function appendTeamToList(team, index) {
   }
 
   item.append(memberList);
-  teamList.append(item);
+  return item;
+}
+
+function renderTeamHistory({ preserveScroll = false } = {}) {
+  if (!teamList) {
+    return;
+  }
+
+  const previousScrollPosition = teamList.scrollTop;
+  teamList.innerHTML = "";
+
+  const teamsInReverseOrder = [...revealedTeams].reverse();
+
+  teamsInReverseOrder.forEach((team, reverseIndex) => {
+    const actualIndex = revealedTeams.length - reverseIndex;
+    teamList.append(createTeamListItem(team, actualIndex));
+  });
+
   updateTeamHistoryAvailability();
+
+  if (preserveScroll) {
+    teamList.scrollTop = previousScrollPosition;
+  } else {
+    teamList.scrollTop = 0;
+  }
 }
 
 function finalizeTeams() {
